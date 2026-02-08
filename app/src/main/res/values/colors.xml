@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- ===== IMMERSIVE NEON GLASS DESIGN SYSTEM ===== -->
+
+    <!-- Deep Dark Mode Base Colors (OLED optimized) -->
+    <color name="alea_background">#121212</color>
+    <color name="alea_background_secondary">#0D0D15</color>
+    <color name="alea_surface">#1E1E2C</color>
+    <color name="alea_surface_variant">#2A2A3C</color>
+
+    <!-- Glassmorphism Effect Colors -->
+    <color name="alea_glass">#B31E1E2C</color>           <!-- 70% opacity -->
+    <color name="alea_glass_light">#991E1E2C</color>     <!-- 60% opacity -->
+    <color name="alea_glass_dark">#E61E1E2C</color>      <!-- 90% opacity -->
+    <color name="alea_glass_border">#33FFFFFF</color>    <!-- 20% white -->
+    <color name="alea_glass_border_light">#1AFFFFFF</color> <!-- 10% white -->
+
+    <!-- Primary Gradient - Solar Flare (Orange to Pink Neon) -->
+    <color name="alea_primary_start">#FF8C42</color>     <!-- Orange vibrant -->
+    <color name="alea_primary_end">#FF4B6A</color>       <!-- Pink neon -->
+    <color name="alea_primary">#FF6B56</color>           <!-- Midpoint -->
+    <color name="alea_primary_variant">#FF7F4D</color>   <!-- Darker variant -->
+
+    <!-- Secondary Gradient - Aurora (Violet to Blue) -->
+    <color name="alea_secondary_start">#4E54C8</color>   <!-- Violet deep -->
+    <color name="alea_secondary_end">#8F94FB</color>     <!-- Blue lavender -->
+    <color name="alea_secondary">#6E74DC</color>         <!-- Midpoint -->
+
+    <!-- Solar Gradient (for balance card) -->
+    <color name="alea_solar_start">#FF8C42</color>
+    <color name="alea_solar_center">#FF6B00</color>
+    <color name="alea_solar_end">#FF4B6A</color>
+
+    <!-- Text Colors (WCAG AAA compliant) -->
+    <color name="alea_text_primary">#FFFFFF</color>      <!-- Pure white -->
+    <color name="alea_text_secondary">#B4B4C8</color>    <!-- Light gray -->
+    <color name="alea_text_tertiary">#6B6B7F</color>     <!-- Medium gray -->
+    <color name="alea_text_hint">#6B6B7F</color>         <!-- Placeholder -->
+
+    <!-- Semantic State Colors -->
+    <color name="alea_success">#4ADE80</color>           <!-- Green neon -->
+    <color name="alea_success_light">#1A4ADE80</color>
+    <color name="alea_error">#EF4444</color>             <!-- Red vibrant -->
+    <color name="alea_error_light">#1AEF4444</color>
+    <color name="alea_warning">#FBBF24</color>           <!-- Yellow golden -->
+    <color name="alea_warning_light">#1AFBBF24</color>
+    <color name="alea_info">#60A5FA</color>              <!-- Blue info -->
+    <color name="alea_info_light">#1A60A5FA</color>
+
+    <!-- Status Colors -->
+    <color name="alea_online">#4ADE80</color>
+    <color name="alea_offline">#6B6B7F</color>
+    <color name="alea_busy">#FBBF24</color>
+
+    <!-- Badge Colors -->
+    <color name="alea_badge_active">#4ADE80</color>
+    <color name="alea_badge_won">#FFD700</color>
+    <color name="alea_badge_lost">#EF4444</color>
+    <color name="alea_badge_pending">#FBBF24</color>
+
+    <!-- Ranking Podium Colors -->
+    <color name="alea_gold">#FFD700</color>
+    <color name="alea_silver">#C0C0C0</color>
+    <color name="alea_bronze">#CD7F32</color>
+
+    <!-- Ripple -->
+    <color name="alea_ripple">#33FFFFFF</color>
+
+    <!-- Divider -->
+    <color name="alea_divider">#1AFFFFFF</color>
+
+    <!-- Coin -->
+    <color name="alea_coin">#FFD700</color>
+
+    <!-- Theme Color Options for Settings -->
+    <color name="alea_theme_orange">#FF8C42</color>
+    <color name="alea_theme_pink">#FF4B6A</color>
+    <color name="alea_theme_violet">#4E54C8</color>
+    <color name="alea_theme_lavender">#8F94FB</color>
+    <color name="alea_theme_green">#4ADE80</color>
+    <color name="alea_theme_yellow">#FBBF24</color>
+    <color name="alea_theme_red">#EF4444</color>
+    <color name="alea_theme_blue">#60A5FA</color>
+
+    <!-- Glow/Shadow Colors for Neon Effect -->
+    <color name="alea_glow_primary">#80FF4B6A</color>    <!-- 50% pink -->
+    <color name="alea_glow_secondary">#808F94FB</color>  <!-- 50% blue -->
+
+    <!-- Alpha Colors -->
+    <color name="alea_primary_alpha20">#33FF6B56</color>
+    <color name="alea_primary_alpha40">#66FF6B56</color>
+</resources>

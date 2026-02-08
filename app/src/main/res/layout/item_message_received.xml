@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/spacing_sm"
+    android:paddingEnd="@dimen/spacing_xxl">
+
+    <TextView
+        android:id="@+id/messageText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_chat_bubble_received"
+        android:maxWidth="@dimen/chat_bubble_max_width"
+        android:padding="@dimen/spacing_md"
+        android:textColor="@color/alea_text_primary"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_max="wrap"
+        tools:text="Sure! Let's do this!" />
+
+    <TextView
+        android:id="@+id/timestampText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_xs"
+        android:textColor="@color/alea_text_tertiary"
+        android:textSize="10sp"
+        app:layout_constraintStart_toStartOf="@id/messageText"
+        app:layout_constraintTop_toBottomOf="@id/messageText"
+        tools:text="10:32 AM" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,173 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Alea" parent="Theme.Material3.Dark.NoActionBar">
+        <!-- Primary colors -->
+        <item name="colorPrimary">@color/alea_primary</item>
+        <item name="colorPrimaryVariant">@color/alea_primary_end</item>
+        <item name="colorOnPrimary">@color/alea_text_primary</item>
+
+        <!-- Secondary colors -->
+        <item name="colorSecondary">@color/alea_secondary</item>
+        <item name="colorSecondaryVariant">@color/alea_secondary_end</item>
+        <item name="colorOnSecondary">@color/alea_text_primary</item>
+
+        <!-- Background colors -->
+        <item name="android:colorBackground">@color/alea_background</item>
+        <item name="colorSurface">@color/alea_surface</item>
+        <item name="colorSurfaceVariant">@color/alea_surface_variant</item>
+        <item name="colorOnSurface">@color/alea_text_primary</item>
+        <item name="colorOnSurfaceVariant">@color/alea_text_secondary</item>
+
+        <!-- Error colors -->
+        <item name="colorError">@color/alea_error</item>
+        <item name="colorOnError">@color/alea_text_primary</item>
+
+        <!-- Status bar -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">false</item>
+
+        <!-- Shape appearance -->
+        <item name="shapeAppearanceSmallComponent">@style/Alea.ShapeAppearance.Small</item>
+        <item name="shapeAppearanceMediumComponent">@style/Alea.ShapeAppearance.Medium</item>
+        <item name="shapeAppearanceLargeComponent">@style/Alea.ShapeAppearance.Large</item>
+
+        <!-- Text appearance -->
+        <item name="textAppearanceHeadlineLarge">@style/Alea.TextAppearance.HeadlineLarge</item>
+        <item name="textAppearanceHeadlineMedium">@style/Alea.TextAppearance.HeadlineMedium</item>
+        <item name="textAppearanceBodyLarge">@style/Alea.TextAppearance.BodyLarge</item>
+        <item name="textAppearanceBodyMedium">@style/Alea.TextAppearance.BodyMedium</item>
+
+        <!-- Button style -->
+        <item name="materialButtonStyle">@style/Alea.Button.Primary</item>
+    </style>
+
+    <style name="Theme.Alea" parent="Base.Theme.Alea" />
+
+    <!-- Shape Appearances -->
+    <style name="Alea.ShapeAppearance.Small" parent="ShapeAppearance.Material3.SmallComponent">
+        <item name="cornerSize">@dimen/radius_sm</item>
+    </style>
+
+    <style name="Alea.ShapeAppearance.Medium" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerSize">@dimen/radius_lg</item>
+    </style>
+
+    <style name="Alea.ShapeAppearance.Large" parent="ShapeAppearance.Material3.LargeComponent">
+        <item name="cornerSize">@dimen/radius_xl</item>
+    </style>
+
+    <!-- Text Appearances -->
+    <style name="Alea.TextAppearance.HeadlineLarge" parent="TextAppearance.Material3.HeadlineLarge">
+        <item name="android:textSize">32sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/alea_text_primary</item>
+    </style>
+
+    <style name="Alea.TextAppearance.HeadlineMedium" parent="TextAppearance.Material3.HeadlineMedium">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/alea_text_primary</item>
+    </style>
+
+    <style name="Alea.TextAppearance.TitleLarge" parent="TextAppearance.Material3.TitleLarge">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/alea_text_primary</item>
+    </style>
+
+    <style name="Alea.TextAppearance.TitleMedium" parent="TextAppearance.Material3.TitleMedium">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/alea_text_primary</item>
+    </style>
+
+    <style name="Alea.TextAppearance.BodyLarge" parent="TextAppearance.Material3.BodyLarge">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/alea_text_primary</item>
+    </style>
+
+    <style name="Alea.TextAppearance.BodyMedium" parent="TextAppearance.Material3.BodyMedium">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/alea_text_secondary</item>
+    </style>
+
+    <style name="Alea.TextAppearance.BodySmall" parent="TextAppearance.Material3.BodySmall">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/alea_text_tertiary</item>
+    </style>
+
+    <style name="Alea.TextAppearance.LabelLarge" parent="TextAppearance.Material3.LabelLarge">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/alea_text_primary</item>
+    </style>
+
+    <!-- Button Styles -->
+    <style name="Alea.Button.Primary" parent="Widget.Material3.Button">
+        <item name="android:background">@drawable/bg_button_primary_ripple</item>
+        <item name="android:textColor">@color/alea_text_primary</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:minHeight">@dimen/button_height</item>
+        <item name="android:paddingHorizontal">@dimen/spacing_lg</item>
+        <item name="backgroundTint">@null</item>
+    </style>
+
+    <style name="Alea.Button.Secondary" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="android:textColor">@color/alea_text_primary</item>
+        <item name="strokeColor">@color/alea_glass_border</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="shapeAppearance">@style/Alea.ShapeAppearance.Large</item>
+    </style>
+
+    <style name="Alea.Button.Text" parent="Widget.Material3.Button.TextButton">
+        <item name="android:textColor">@color/alea_primary</item>
+    </style>
+
+    <!-- Card Styles -->
+    <style name="Alea.Card.Glass" parent="Widget.Material3.CardView.Filled">
+        <item name="cardBackgroundColor">@color/alea_glass</item>
+        <item name="cardCornerRadius">@dimen/radius_lg</item>
+        <item name="cardElevation">@dimen/elevation_sm</item>
+        <item name="strokeColor">@color/alea_glass_border</item>
+        <item name="strokeWidth">1dp</item>
+    </style>
+
+    <!-- Text Input Styles -->
+    <style name="Alea.TextInputLayout" parent="Widget.Material3.TextInputLayout.FilledBox">
+        <item name="boxBackgroundColor">@color/alea_surface_variant</item>
+        <item name="boxCornerRadiusTopStart">@dimen/radius_lg</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/radius_lg</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/radius_lg</item>
+        <item name="boxCornerRadiusBottomEnd">@dimen/radius_lg</item>
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="hintTextColor">@color/alea_text_tertiary</item>
+        <item name="android:textColorHint">@color/alea_text_hint</item>
+    </style>
+
+    <!-- Bottom Navigation Style -->
+    <style name="Alea.BottomNavigation" parent="Widget.Material3.BottomNavigationView">
+        <item name="android:background">@drawable/bg_bottom_nav</item>
+        <item name="itemIconTint">@color/bottom_nav_colors</item>
+        <item name="itemTextColor">@color/bottom_nav_colors</item>
+        <item name="labelVisibilityMode">unlabeled</item>
+    </style>
+
+    <!-- Splash Screen Theme -->
+    <style name="Theme.Alea.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/alea_background</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
+        <item name="postSplashScreenTheme">@style/Theme.Alea</item>
+    </style>
+
+    <!-- FAB Shape -->
+    <style name="Alea.ShapeAppearance.FAB" parent="ShapeAppearance.Material3.Corner.Full">
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <!-- Bottom Nav Active Indicator -->
+    <style name="Alea.BottomNav.ActiveIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/alea_primary_alpha20</item>
+    </style>
+</resources>

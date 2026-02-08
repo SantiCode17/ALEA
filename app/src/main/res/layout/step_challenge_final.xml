@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/spacing_md">
+
+        <TextView
+            android:id="@+id/stepTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/create_challenge_details"
+            android:textColor="@color/alea_text_primary"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Bet Amount -->
+        <TextView
+            android:id="@+id/betLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_lg"
+            android:text="@string/create_bet_amount"
+            android:textColor="@color/alea_text_primary"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/stepTitle" />
+
+        <LinearLayout
+            android:id="@+id/betContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_md"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/betLabel">
+
+            <ImageButton
+                android:id="@+id/decreaseButton"
+                android:layout_width="@dimen/avatar_lg"
+                android:layout_height="@dimen/avatar_lg"
+                android:background="@drawable/bg_glass_card"
+                android:src="@drawable/ic_back"
+                android:rotation="90"
+                app:tint="@color/alea_text_primary" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/spacing_lg"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/icon_lg"
+                    android:layout_height="@dimen/icon_lg"
+                    android:src="@drawable/ic_coin"
+                    app:tint="@color/alea_coin" />
+
+                <TextView
+                    android:id="@+id/betAmountText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_sm"
+                    android:textColor="@color/alea_text_primary"
+                    android:textSize="32sp"
+                    android:textStyle="bold"
+                    tools:text="50" />
+            </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/increaseButton"
+                android:layout_width="@dimen/avatar_lg"
+                android:layout_height="@dimen/avatar_lg"
+                android:background="@drawable/bg_glass_card"
+                android:src="@drawable/ic_back"
+                android:rotation="270"
+                app:tint="@color/alea_text_primary" />
+        </LinearLayout>
+
+        <!-- Deadline -->
+        <TextView
+            android:id="@+id/deadlineLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_xl"
+            android:text="@string/create_deadline"
+            android:textColor="@color/alea_text_primary"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/betContainer" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/deadlineCard"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_md"
+            app:cardBackgroundColor="@color/alea_glass"
+            app:cardCornerRadius="@dimen/radius_lg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/deadlineLabel">
+
+            <CalendarView
+                android:id="@+id/calendarView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/Theme.Alea" />
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Spacing System -->
+    <dimen name="spacing_xxs">2dp</dimen>
+    <dimen name="spacing_xs">4dp</dimen>
+    <dimen name="spacing_sm">8dp</dimen>
+    <dimen name="spacing_md">16dp</dimen>
+    <dimen name="spacing_lg">24dp</dimen>
+    <dimen name="spacing_xl">32dp</dimen>
+    <dimen name="spacing_xxl">48dp</dimen>
+    <dimen name="spacing_xxxl">64dp</dimen>
+
+    <!-- Corner Radius -->
+    <dimen name="radius_xs">4dp</dimen>
+    <dimen name="radius_sm">8dp</dimen>
+    <dimen name="radius_md">12dp</dimen>
+    <dimen name="radius_lg">16dp</dimen>
+    <dimen name="radius_xl">24dp</dimen>
+    <dimen name="radius_xxl">32dp</dimen>
+    <dimen name="radius_round">50dp</dimen>
+
+    <!-- Elevation -->
+    <dimen name="elevation_none">0dp</dimen>
+    <dimen name="elevation_xs">2dp</dimen>
+    <dimen name="elevation_sm">4dp</dimen>
+    <dimen name="elevation_md">8dp</dimen>
+    <dimen name="elevation_lg">12dp</dimen>
+    <dimen name="elevation_xl">16dp</dimen>
+
+    <!-- Icon Sizes -->
+    <dimen name="icon_xs">16dp</dimen>
+    <dimen name="icon_sm">20dp</dimen>
+    <dimen name="icon_md">24dp</dimen>
+    <dimen name="icon_lg">32dp</dimen>
+    <dimen name="icon_xl">48dp</dimen>
+    <dimen name="icon_xxl">64dp</dimen>
+
+    <!-- Avatar Sizes -->
+    <dimen name="avatar_sm">32dp</dimen>
+    <dimen name="avatar_md">40dp</dimen>
+    <dimen name="avatar_lg">48dp</dimen>
+    <dimen name="avatar_xl">64dp</dimen>
+    <dimen name="avatar_xxl">80dp</dimen>
+    <dimen name="avatar_profile">120dp</dimen>
+
+    <!-- Button Sizes -->
+    <dimen name="button_height">56dp</dimen>
+    <dimen name="button_height_sm">44dp</dimen>
+    <dimen name="button_radius">24dp</dimen>
+    <dimen name="fab_size">64dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <!-- Card Sizes -->
+    <dimen name="card_min_height">80dp</dimen>
+    <dimen name="card_challenge_size">160dp</dimen>
+    <dimen name="card_border_width">1dp</dimen>
+
+    <!-- Bottom Navigation -->
+    <dimen name="bottom_nav_height">64dp</dimen>
+    <dimen name="bottom_nav_margin">16dp</dimen>
+    <dimen name="bottom_nav_icon">24dp</dimen>
+
+    <!-- Text Input -->
+    <dimen name="input_height">56dp</dimen>
+    <dimen name="input_padding_horizontal">16dp</dimen>
+
+    <!-- Header -->
+    <dimen name="header_height">56dp</dimen>
+
+    <!-- Podium -->
+    <dimen name="podium_first_height">140dp</dimen>
+    <dimen name="podium_second_height">100dp</dimen>
+    <dimen name="podium_third_height">80dp</dimen>
+    <dimen name="podium_avatar">64dp</dimen>
+
+    <!-- Chat -->
+    <dimen name="chat_bubble_max_width">280dp</dimen>
+    <dimen name="chat_input_height">56dp</dimen>
+    <dimen name="chat_input_max_height">120dp</dimen>
+
+    <!-- Stats Grid -->
+    <dimen name="stats_card_height">100dp</dimen>
+
+    <!-- Mascot -->
+    <dimen name="mascot_onboarding">250dp</dimen>
+    <dimen name="mascot_empty_state">150dp</dimen>
+</resources>

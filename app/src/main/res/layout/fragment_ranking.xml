@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/alea_background">
+
+    <!-- Header -->
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bg_icon_button"
+        android:contentDescription="@string/cd_back"
+        android:padding="10dp"
+        android:src="@drawable/ic_back"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/alea_text_primary" />
+
+    <TextView
+        android:id="@+id/titleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/ranking_title"
+        android:textColor="@color/alea_text_primary"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Segmented Control -->
+    <com.google.android.material.button.MaterialButtonToggleGroup
+        android:id="@+id/periodToggle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_md"
+        app:checkedButton="@id/weeklyButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titleText"
+        app:selectionRequired="true"
+        app:singleSelection="true">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/weeklyButton"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ranking_weekly"
+            android:textColor="@color/alea_text_primary"
+            app:cornerRadius="@dimen/radius_xl"
+            app:strokeColor="@color/alea_glass_border" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/allTimeButton"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ranking_all_time"
+            android:textColor="@color/alea_text_primary"
+            app:cornerRadius="@dimen/radius_xl"
+            app:strokeColor="@color/alea_glass_border" />
+    </com.google.android.material.button.MaterialButtonToggleGroup>
+
+    <!-- Podium -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/podiumContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_md"
+        android:layout_marginTop="@dimen/spacing_lg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/periodToggle">
+
+        <!-- 2nd Place -->
+        <LinearLayout
+            android:id="@+id/secondPlace"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@id/firstPlace"
+            app:layout_constraintEnd_toStartOf="@id/firstPlace"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/firstPlace"
+            app:layout_constraintVertical_bias="1.0">
+
+            <ImageView
+                android:id="@+id/secondAvatar"
+                android:layout_width="@dimen/avatar_xl"
+                android:layout_height="@dimen/avatar_xl"
+                android:background="@drawable/bg_avatar_border"
+                android:padding="2dp"
+                android:src="@drawable/ic_profile"
+                app:tint="@color/alea_silver" />
+
+            <TextView
+                android:id="@+id/secondName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_sm"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/alea_text_primary"
+                android:textSize="14sp"
+                tools:text="Player2" />
+
+            <TextView
+                android:id="@+id/secondPoints"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/alea_silver"
+                android:textSize="12sp"
+                tools:text="980 pts" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/podium_second_height"
+                android:layout_marginTop="@dimen/spacing_sm"
+                android:background="@color/alea_silver" />
+        </LinearLayout>
+
+        <!-- 1st Place -->
+        <LinearLayout
+            android:id="@+id/firstPlace"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toStartOf="@id/thirdPlace"
+            app:layout_constraintStart_toEndOf="@id/secondPlace"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="@dimen/icon_lg"
+                android:layout_height="@dimen/icon_lg"
+                android:src="@drawable/ic_crown"
+                app:tint="@color/alea_gold" />
+
+            <ImageView
+                android:id="@+id/firstAvatar"
+                android:layout_width="@dimen/avatar_xxl"
+                android:layout_height="@dimen/avatar_xxl"
+                android:background="@drawable/bg_avatar_border"
+                android:padding="2dp"
+                android:src="@drawable/ic_profile"
+                app:tint="@color/alea_gold" />
+
+            <TextView
+                android:id="@+id/firstName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_sm"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/alea_text_primary"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:text="Player1" />
+
+            <TextView
+                android:id="@+id/firstPoints"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/alea_gold"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                tools:text="1,245 pts" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/podium_first_height"
+                android:layout_marginTop="@dimen/spacing_sm"
+                android:background="@color/alea_gold" />
+        </LinearLayout>
+
+        <!-- 3rd Place -->
+        <LinearLayout
+            android:id="@+id/thirdPlace"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@id/firstPlace"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/firstPlace"
+            app:layout_constraintTop_toTopOf="@id/firstPlace"
+            app:layout_constraintVertical_bias="1.0">
+
+            <ImageView
+                android:id="@+id/thirdAvatar"
+                android:layout_width="@dimen/avatar_lg"
+                android:layout_height="@dimen/avatar_lg"
+                android:background="@drawable/bg_avatar_border"
+                android:padding="2dp"
+                android:src="@drawable/ic_profile"
+                app:tint="@color/alea_bronze" />
+
+            <TextView
+                android:id="@+id/thirdName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_sm"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/alea_text_primary"
+                android:textSize="12sp"
+                tools:text="Player3" />
+
+            <TextView
+                android:id="@+id/thirdPoints"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/alea_bronze"
+                android:textSize="11sp"
+                tools:text="875 pts" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/podium_third_height"
+                android:layout_marginTop="@dimen/spacing_sm"
+                android:background="@color/alea_bronze" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Ranking List -->
+    <TextView
+        android:id="@+id/topPlayersLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/ranking_top_players"
+        android:textColor="@color/alea_text_secondary"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        android:letterSpacing="0.05"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/podiumContainer" />
+
+    <!-- Your Position Card -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/yourPositionCard"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
+        app:cardBackgroundColor="@color/alea_surface"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="0dp"
+        app:strokeColor="@color/alea_primary"
+        app:strokeWidth="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topPlayersLabel">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="14dp">
+
+            <TextView
+                android:id="@+id/yourPositionNumber"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:gravity="center"
+                android:background="@drawable/gradient_primary"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                tools:text="#7" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="12dp"
+                android:background="@drawable/bg_avatar_border"
+                android:padding="2dp"
+                android:src="@drawable/ic_profile"
+                app:tint="@color/alea_primary" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/yourPositionName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/alea_text_primary"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    tools:text="Tú" />
+
+                <TextView
+                    android:id="@+id/yourPositionLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ranking_your_position"
+                    android:textColor="@color/alea_primary"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/yourPositionPoints"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/alea_primary"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                tools:text="450 pts" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rankingRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:clipToPadding="false"
+        android:paddingHorizontal="@dimen/spacing_md"
+        android:paddingBottom="100dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/yourPositionCard"
+        tools:itemCount="10"
+        tools:listitem="@layout/item_ranking" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
