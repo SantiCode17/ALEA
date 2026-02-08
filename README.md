@@ -337,17 +337,3 @@ Para desarrollo en Android Studio: abrir el proyecto, sincronizar Gradle y ejecu
 Autor: SantiCode17
 Repositorio: https://github.com/SantiCode17/ALEA
 
-Licencia: MIT (colocar LICENSE en la raíz si quieres abrir el proyecto)
-
----
-
-Si quieres, puedo:
-
-1. Ajustar el README para incluir badges automáticos (build/coverage)
-2. Generar un `CONTRIBUTING.md` y `CODE_OF_CONDUCT`
-3. Añadir una sección de `How to run tests` con ejemplos de unit/UI tests
-
-Indícame si prefieres que deje una versión más corta para la vista principal del repo o que mantenga este README como la única fuente completa.
-
-**Archivos modificados:**
-- `README.md` — Versión definitiva y detallada del proyecto ALEA (guía, diseño, roadmap, dependencias)
