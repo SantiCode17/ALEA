@@ -112,6 +112,71 @@ class UserRepository @Inject constructor(
             totalChallenges = 40,
             rank = 7,
             isOnline = false
+        ),
+        User(
+            id = "user_8",
+            username = "Luna",
+            displayName = "Luna Martínez",
+            email = "luna@alea.com",
+            coins = 14200,
+            level = 14,
+            xp = 520,
+            wins = 48,
+            totalChallenges = 62,
+            rank = 4,
+            isOnline = true
+        ),
+        User(
+            id = "user_9",
+            username = "Diego",
+            displayName = "Diego Torres",
+            email = "diego@alea.com",
+            coins = 7100,
+            level = 7,
+            xp = 380,
+            wins = 22,
+            totalChallenges = 35,
+            rank = 8,
+            isOnline = true
+        ),
+        User(
+            id = "user_10",
+            username = "Valeria",
+            displayName = "Valeria Ruiz",
+            email = "valeria@alea.com",
+            coins = 5800,
+            level = 6,
+            xp = 270,
+            wins = 18,
+            totalChallenges = 28,
+            rank = 9,
+            isOnline = false
+        ),
+        User(
+            id = "user_11",
+            username = "Pablo",
+            displayName = "Pablo Sánchez",
+            email = "pablo@alea.com",
+            coins = 4300,
+            level = 5,
+            xp = 190,
+            wins = 15,
+            totalChallenges = 22,
+            rank = 11,
+            isOnline = true
+        ),
+        User(
+            id = "user_12",
+            username = "Sofia",
+            displayName = "Sofía Herrera",
+            email = "sofia@alea.com",
+            coins = 2100,
+            level = 2,
+            xp = 80,
+            wins = 6,
+            totalChallenges = 12,
+            rank = 12,
+            isOnline = false
         )
     )
 
@@ -194,6 +259,25 @@ class UserRepository @Inject constructor(
             emit(users)
         } catch (e: Exception) {
             emit(demoUsers.sortedByDescending { it.coins })
+        }
+    }
+
+    fun getWeeklyLeaderboard(limit: Int): Flow<List<User>> = flow {
+        if (usersCollection == null) {
+            // Weekly ranking sorted by wins (simulates recent weekly performance)
+            emit(demoUsers.sortedByDescending { it.wins }.take(limit))
+            return@flow
+        }
+        try {
+            val users = usersCollection
+                .orderBy("wins", com.google.firebase.firestore.Query.Direction.DESCENDING)
+                .limit(limit.toLong())
+                .get()
+                .await()
+                .toObjects(User::class.java)
+            emit(users)
+        } catch (e: Exception) {
+            emit(demoUsers.sortedByDescending { it.wins }.take(limit))
         }
     }
 }

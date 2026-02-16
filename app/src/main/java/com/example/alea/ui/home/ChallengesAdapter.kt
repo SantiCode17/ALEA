@@ -53,14 +53,15 @@ class ChallengesAdapter(
                 binding.opponentName.visibility = android.view.View.GONE
             }
 
+            val context = binding.root.context
             val (statusText, statusBackground) = when (challenge.status) {
-                ChallengeStatus.ACTIVE -> "Active" to R.drawable.bg_badge_active
+                ChallengeStatus.ACTIVE -> context.getString(R.string.status_active) to R.drawable.bg_badge_active
                 ChallengeStatus.COMPLETED -> {
-                    if (challenge.result.name == "WON") "Won" to R.drawable.bg_badge_won
-                    else "Lost" to R.drawable.bg_badge_lost
+                    if (challenge.result.name == "WON") context.getString(R.string.status_won) to R.drawable.bg_badge_won
+                    else context.getString(R.string.status_completed) to R.drawable.bg_badge_lost
                 }
-                ChallengeStatus.PENDING -> "Pending" to R.drawable.bg_badge_active
-                ChallengeStatus.CANCELLED -> "Cancelled" to R.drawable.bg_badge_lost
+                ChallengeStatus.PENDING -> context.getString(R.string.status_pending) to R.drawable.bg_badge_active
+                ChallengeStatus.CANCELLED -> context.getString(R.string.status_cancelled) to R.drawable.bg_badge_lost
             }
             binding.statusBadge.text = statusText
             binding.statusBadge.setBackgroundResource(statusBackground)

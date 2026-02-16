@@ -39,7 +39,14 @@ class RankingViewModel @Inject constructor(
 
     fun loadRanking() {
         viewModelScope.launch {
-            userRepository.getLeaderboard(50)
+            val isWeekly = _uiState.value.isWeekly
+            val leaderboardFlow = if (isWeekly) {
+                userRepository.getWeeklyLeaderboard(50)
+            } else {
+                userRepository.getLeaderboard(50)
+            }
+
+            leaderboardFlow
                 .catch { e ->
                     _uiState.value = _uiState.value.copy(
                         isLoading = false,
@@ -50,6 +57,11 @@ class RankingViewModel @Inject constructor(
                     val currentUserId = authRepository.currentUserId ?: "demo_user_123"
                     val userIndex = users.indexOfFirst { it.id == currentUserId }
                     val currentUser = if (userIndex >= 0) users[userIndex] else null
+                    val pointsValue = if (isWeekly) {
+                        currentUser?.wins?.toLong() ?: 0
+                    } else {
+                        currentUser?.coins ?: 450
+                    }
 
                     _uiState.value = _uiState.value.copy(
                         isLoading = false,
@@ -57,15 +69,14 @@ class RankingViewModel @Inject constructor(
                         restOfRanking = users.drop(3),
                         currentUserName = currentUser?.username ?: "Tú",
                         currentUserRank = if (userIndex >= 0) userIndex + 1 else users.size + 1,
-                        currentUserPoints = currentUser?.coins ?: 450
+                        currentUserPoints = pointsValue
                     )
                 }
         }
     }
 
     fun togglePeriod(isWeekly: Boolean) {
-        _uiState.value = _uiState.value.copy(isWeekly = isWeekly)
-        // TODO: Implement weekly vs all-time filtering
+        _uiState.value = _uiState.value.copy(isWeekly = isWeekly, isLoading = true)
         loadRanking()
     }
 }

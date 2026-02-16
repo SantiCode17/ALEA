@@ -91,6 +91,7 @@ class CreateChallengeFragment : Fragment() {
 
                 // Handle success - navigate to victory screen
                 if (state.isSuccess) {
+                    viewModel.onSuccessConsumed()
                     findNavController().navigate(R.id.action_createChallenge_to_victory)
                 }
 

@@ -74,7 +74,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_sm"
-                android:text="Challenges"
+                android:text="@string/onboarding_feature_challenges"
                 android:textColor="@color/alea_text_secondary"
                 android:textSize="12sp" />
         </LinearLayout>
@@ -96,7 +96,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_sm"
-                android:text="Rewards"
+                android:text="@string/onboarding_feature_rewards"
                 android:textColor="@color/alea_text_secondary"
                 android:textSize="12sp" />
         </LinearLayout>
@@ -118,7 +118,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_sm"
-                android:text="Friends"
+                android:text="@string/onboarding_feature_friends"
                 android:textColor="@color/alea_text_secondary"
                 android:textSize="12sp" />
         </LinearLayout>

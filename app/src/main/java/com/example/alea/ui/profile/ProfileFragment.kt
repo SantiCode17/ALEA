@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -12,6 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.alea.R
 import com.example.alea.databinding.FragmentProfileBinding
 import com.example.alea.ui.components.PerformanceChartView
+import com.example.alea.ui.home.ChallengesAdapter
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.text.NumberFormat
@@ -25,6 +29,7 @@ class ProfileFragment : Fragment() {
 
     private val viewModel: ProfileViewModel by viewModels()
     private lateinit var achievementsAdapter: AchievementsAdapter
+    private lateinit var challengesAdapter: ChallengesAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,6 +44,7 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupAchievementsRecyclerView()
+        setupChallengesRecyclerView()
         setupClickListeners()
         setupFilterToggle()
         setupPerformanceChart()
@@ -49,6 +55,21 @@ class ProfileFragment : Fragment() {
         achievementsAdapter = AchievementsAdapter()
         binding.achievementsRecyclerView.apply {
             adapter = achievementsAdapter
+            layoutManager = LinearLayoutManager(
+                requireContext(),
+                LinearLayoutManager.HORIZONTAL,
+                false
+            )
+        }
+    }
+
+    private fun setupChallengesRecyclerView() {
+        challengesAdapter = ChallengesAdapter { challenge ->
+            val action = ProfileFragmentDirections.actionProfileToChallengeDetail(challenge.id)
+            findNavController().navigate(action)
+        }
+        binding.challengesRecyclerView.apply {
+            adapter = challengesAdapter
             layoutManager = LinearLayoutManager(
                 requireContext(),
                 LinearLayoutManager.HORIZONTAL,
@@ -78,8 +99,31 @@ class ProfileFragment : Fragment() {
         }
 
         binding.editProfileButton.setOnClickListener {
-            // TODO: Navigate to edit profile
+            showEditProfileDialog()
         }
+    }
+
+    private fun showEditProfileDialog() {
+        val currentUser = viewModel.uiState.value.user ?: return
+        val dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_edit_profile, null)
+        val usernameInput = dialogView.findViewById<EditText>(R.id.usernameInput)
+        val displayNameInput = dialogView.findViewById<EditText>(R.id.displayNameInput)
+
+        usernameInput.setText(currentUser.username)
+        displayNameInput.setText(currentUser.displayName)
+
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle(getString(R.string.profile_edit))
+            .setView(dialogView)
+            .setPositiveButton(getString(R.string.save)) { _, _ ->
+                val newUsername = usernameInput.text.toString().trim()
+                val newDisplayName = displayNameInput.text.toString().trim()
+                if (newUsername.isNotEmpty()) {
+                    viewModel.updateProfile(newUsername, newDisplayName)
+                }
+            }
+            .setNegativeButton(getString(R.string.cancel), null)
+            .show()
     }
 
     private fun setupFilterToggle() {
@@ -110,6 +154,12 @@ class ProfileFragment : Fragment() {
 
                 // Update achievements
                 achievementsAdapter.submitList(state.unlockedAchievements)
+
+                // Update filtered challenges
+                val filtered = viewModel.filteredChallenges
+                challengesAdapter.submitList(filtered)
+                binding.challengesRecyclerView.isVisible = filtered.isNotEmpty()
+                binding.challengesEmptyText.isVisible = filtered.isEmpty()
             }
         }
     }

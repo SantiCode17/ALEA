@@ -54,7 +54,7 @@ data class Notification(
         }
 
     /**
-     * Get relative time string
+     * Get relative time string (localized in Spanish)
      */
     fun getRelativeTime(): String {
         val now = System.currentTimeMillis()
@@ -62,11 +62,11 @@ data class Notification(
         val diff = now - notificationTime
 
         return when {
-            diff < 60_000 -> "Just now"
-            diff < 3_600_000 -> "${diff / 60_000}m ago"
-            diff < 86_400_000 -> "${diff / 3_600_000}h ago"
-            diff < 604_800_000 -> "${diff / 86_400_000}d ago"
-            else -> "${diff / 604_800_000}w ago"
+            diff < 60_000 -> "Ahora"
+            diff < 3_600_000 -> "Hace ${diff / 60_000}m"
+            diff < 86_400_000 -> "Hace ${diff / 3_600_000}h"
+            diff < 604_800_000 -> "Hace ${diff / 86_400_000}d"
+            else -> "Hace ${diff / 604_800_000}sem"
         }
     }
 }

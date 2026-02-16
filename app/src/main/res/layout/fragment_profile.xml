@@ -148,6 +148,35 @@
                 app:strokeColor="@color/alea_glass_border" />
         </com.google.android.material.button.MaterialButtonToggleGroup>
 
+        <!-- Filtered Challenges List -->
+        <TextView
+            android:id="@+id/challengesEmptyText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/home_no_challenges"
+            android:textColor="@color/alea_text_tertiary"
+            android:textSize="14sp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/filterToggle" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/challengesRecyclerView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:clipToPadding="false"
+            android:orientation="horizontal"
+            android:paddingHorizontal="20dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/filterToggle"
+            tools:itemCount="3"
+            tools:listitem="@layout/item_challenge_card" />
+
         <!-- Stats Grid -->
         <androidx.gridlayout.widget.GridLayout
             android:id="@+id/statsGrid"
@@ -158,7 +187,7 @@
             app:columnCount="2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/filterToggle"
+            app:layout_constraintTop_toBottomOf="@id/challengesRecyclerView"
             app:rowCount="2">
 
             <!-- Total Coins -->

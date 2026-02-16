@@ -15,7 +15,7 @@
             android:id="@+id/stepTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="What's your challenge?"
+            android:text="@string/create_step1_title"
             android:textColor="@color/alea_text_primary"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -28,7 +28,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_lg"
-            android:hint="Challenge Title"
+            android:hint="@string/create_step1_hint"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/stepTitle">
@@ -67,7 +67,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_lg"
-            android:text="Choose Category"
+            android:text="@string/create_choose_category"
             android:textColor="@color/alea_text_primary"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -96,7 +96,7 @@
                     style="@style/Widget.Material3.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="💪 Fitness"
+                    android:text="@string/chip_fitness"
                     android:textColor="@color/alea_text_primary" />
 
                 <com.google.android.material.chip.Chip
@@ -104,7 +104,7 @@
                     style="@style/Widget.Material3.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="🎮 Gaming"
+                    android:text="@string/chip_gaming"
                     android:textColor="@color/alea_text_primary" />
 
                 <com.google.android.material.chip.Chip
@@ -112,7 +112,7 @@
                     style="@style/Widget.Material3.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="🎨 Art"
+                    android:text="@string/chip_creativity"
                     android:textColor="@color/alea_text_primary" />
 
                 <com.google.android.material.chip.Chip
@@ -120,7 +120,7 @@
                     style="@style/Widget.Material3.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="🍳 Cooking"
+                    android:text="@string/chip_cooking"
                     android:textColor="@color/alea_text_primary" />
 
                 <com.google.android.material.chip.Chip
@@ -128,7 +128,7 @@
                     style="@style/Widget.Material3.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="📚 Study"
+                    android:text="@string/chip_study"
                     android:textColor="@color/alea_text_primary" />
 
                 <com.google.android.material.chip.Chip
@@ -136,7 +136,7 @@
                     style="@style/Widget.Material3.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="🎵 Music"
+                    android:text="@string/chip_music"
                     android:textColor="@color/alea_text_primary" />
 
                 <com.google.android.material.chip.Chip
@@ -144,7 +144,7 @@
                     style="@style/Widget.Material3.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="⚽ Sports"
+                    android:text="@string/chip_sports"
                     android:textColor="@color/alea_text_primary" />
 
                 <com.google.android.material.chip.Chip
@@ -152,7 +152,7 @@
                     style="@style/Widget.Material3.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="🎯 Other"
+                    android:text="@string/chip_other"
                     android:textColor="@color/alea_text_primary"
                     android:checked="true" />
 
@@ -165,7 +165,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_lg"
-            android:text="Select Difficulty"
+            android:text="@string/create_select_difficulty"
             android:textColor="@color/alea_text_primary"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -189,7 +189,7 @@
                 style="@style/Widget.Material3.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Easy (1x)"
+                android:text="@string/chip_easy"
                 android:textColor="@color/alea_text_primary" />
 
             <com.google.android.material.chip.Chip
@@ -197,7 +197,7 @@
                 style="@style/Widget.Material3.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Medium (2x)"
+                android:text="@string/chip_medium"
                 android:textColor="@color/alea_text_primary"
                 android:checked="true" />
 
@@ -206,7 +206,7 @@
                 style="@style/Widget.Material3.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Hard (3x)"
+                android:text="@string/chip_hard"
                 android:textColor="@color/alea_text_primary" />
 
             <com.google.android.material.chip.Chip
@@ -214,7 +214,7 @@
                 style="@style/Widget.Material3.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Extreme (5x)"
+                android:text="@string/chip_extreme"
                 android:textColor="@color/alea_text_primary" />
 
         </com.google.android.material.chip.ChipGroup>
@@ -225,7 +225,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_lg"
-            android:text="Set the Stake"
+            android:text="@string/create_set_stake"
             android:textColor="@color/alea_text_primary"
             android:textSize="16sp"
             android:textStyle="bold"

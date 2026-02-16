@@ -108,6 +108,8 @@
     <string name="profile_level_format">🏆 Nivel %1$d • %2$s</string>
     <string name="profile_achievements">Logros</string>
     <string name="profile_recent_challenges">Retos Recientes</string>
+    <string name="profile_display_name_hint">Nombre para mostrar</string>
+    <string name="profile_no_challenges_filter">No tienes retos en esta categoría</string>
 
     <!-- Settings -->
     <string name="settings_title">Ajustes</string>
@@ -188,4 +190,69 @@
     <string name="notifications_empty_title">No hay notificaciones</string>
     <string name="notifications_empty_subtitle">Aquí verás las novedades sobre tus retos</string>
     <string name="notifications_dismiss">Descartar</string>
+
+    <!-- Onboarding Features -->
+    <string name="onboarding_feature_challenges">Retos</string>
+    <string name="onboarding_feature_rewards">Recompensas</string>
+    <string name="onboarding_feature_friends">Amigos</string>
+
+    <!-- Relative Time -->
+    <string name="time_just_now">Ahora mismo</string>
+    <string name="time_minutes_ago">Hace %1$dm</string>
+    <string name="time_hours_ago">Hace %1$dh</string>
+    <string name="time_days_ago">Hace %1$dd</string>
+    <string name="time_weeks_ago">Hace %1$dsem</string>
+
+    <!-- Categories -->
+    <string name="category_fitness">💪 Fitness</string>
+    <string name="category_study">📚 Estudio</string>
+    <string name="category_gaming">🎮 Gaming</string>
+    <string name="category_creativity">🎨 Creatividad</string>
+    <string name="category_social">🤝 Social</string>
+    <string name="category_lifestyle">🌟 Estilo de vida</string>
+    <string name="category_adventure">🏔️ Aventura</string>
+    <string name="category_other">🎯 Otro</string>
+
+    <!-- Difficulty -->
+    <string name="difficulty_easy">Fácil</string>
+    <string name="difficulty_medium">Medio</string>
+    <string name="difficulty_hard">Difícil</string>
+    <string name="difficulty_extreme">Extremo</string>
+
+    <!-- Balance Card -->
+    <string name="home_level_format">Nivel %1$d</string>
+    <string name="home_xp_progress_format">%1$d / %2$d XP</string>
+
+    <!-- Empty States -->
+    <string name="home_no_challenges">Sin retos activos</string>
+    <string name="home_start_challenge">¡Crea tu primer reto!</string>
+
+    <!-- Quick Actions -->
+    <string name="action_new_challenge">Nuevo Reto</string>
+    <string name="action_find_friends">Buscar Amigos</string>
+    <string name="action_view_ranking">Ver Ranking</string>
+
+    <!-- Challenge Wizard Step 1 -->
+    <string name="create_step1_title">¿Cuál es tu reto?</string>
+    <string name="create_step1_hint">Título del Reto</string>
+    <string name="create_choose_category">Elige Categoría</string>
+    <string name="create_select_difficulty">Selecciona Dificultad</string>
+    <string name="create_set_stake">Establece la Apuesta</string>
+    <string name="chip_fitness">💪 Fitness</string>
+    <string name="chip_gaming">🎮 Gaming</string>
+    <string name="chip_creativity">🎨 Creatividad</string>
+    <string name="chip_cooking">🍳 Cocina</string>
+    <string name="chip_study">📚 Estudio</string>
+    <string name="chip_music">🎵 Música</string>
+    <string name="chip_sports">⚽ Deportes</string>
+    <string name="chip_other">🎯 Otro</string>
+    <string name="chip_easy">Fácil (1x)</string>
+    <string name="chip_medium">Medio (2x)</string>
+    <string name="chip_hard">Difícil (3x)</string>
+    <string name="chip_extreme">Extremo (5x)</string>
+
+    <!-- Challenge Wizard Step 3 -->
+    <string name="create_step3_title">Últimos Detalles</string>
+    <string name="create_final_bet">Apuesta Final</string>
+    <string name="create_select_deadline">Selecciona Fecha Límite</string>
 </resources>

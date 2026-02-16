@@ -1,339 +1,248 @@
-# ALEA - Social Competitive Gaming App 🎯
+# 🎲 ALEA — Plataforma de Retos Sociales Gamificada
 
-## Descripción
-ALEA es una aplicación Android de competitividad social gamificada que permite a usuarios crear retos, competir con amigos, gestionar apuestas amistosas con moneda virtual (Alea Coins), y escalar en rankings.
+<p align="center">
+  <strong>Compite. Desafía. Conquista.</strong><br/>
+  Aplicación Android nativa de gamificación social competitiva
+</p>
 
-## Características Principales
-- 🎮 **Retos (Challenges)**: Crea y acepta retos con tus amigos
-- 💰 **Alea Coins**: Sistema de moneda virtual para apuestas amistosas
-- 🏆 **Rankings**: Compite globalmente y semanalmente
-- 👥 **Social**: Agrega amigos y chatea en tiempo real
-- 🎨 **Diseño Premium**: UI oscura con glassmorphism y gradientes neón
+<p align="center">
+  <img src="https://img.shields.io/badge/Android-8.0%2B-brightgreen?logo=android" alt="Android 8.0+"/>
+  <img src="https://img.shields.io/badge/Kotlin-2.0.21-7F52FF?logo=kotlin" alt="Kotlin 2.0.21"/>
+  <img src="https://img.shields.io/badge/API-26%E2%80%9336-blue" alt="API 26–36"/>
+  <img src="https://img.shields.io/badge/Firebase-Firestore-orange?logo=firebase" alt="Firebase"/>
+  <img src="https://img.shields.io/badge/Hilt-2.53.1-green" alt="Hilt 2.53.1"/>
+</p>
 
-## Arquitectura
-- **Patrón**: MVVM + Repository Pattern
-- **Inyección de Dependencias**: Hilt
-- **Navegación**: Navigation Component (Single Activity)
-- **Base de Datos**: Firebase Firestore
-- **Autenticación**: Firebase Auth
+---
 
-## Requisitos Técnicos
-- Min SDK: 26 (Android 8.0 Oreo)
-- Target SDK: 36
-- Kotlin 2.0.21
-- Gradle 8.13.2
+## 📖 Descripción
 
-## Configuración del Proyecto
+**ALEA** es una aplicación Android nativa que transforma la competición amistosa en una experiencia gamificada completa. Los usuarios pueden crear retos personalizados, apostar monedas virtuales (₳), subir en el ranking global y desbloquear logros mientras compiten con sus amigos.
 
-### 1. Firebase Setup
-1. Ve a [Firebase Console](https://console.firebase.google.com/)
-2. Crea un nuevo proyecto llamado "ALEA"
-3. Agrega una aplicación Android con el package name: `com.example.alea`
-4. Descarga el archivo `google-services.json`
-5. Colócalo en la carpeta `app/`
+Diseñada con un sistema visual **Neon Glass Dark Theme**, la app ofrece una experiencia premium con animaciones fluidas, transiciones cinematográficas y una interfaz moderna que prioriza la accesibilidad.
 
-### 2. Configuración de Firebase Auth
-En Firebase Console:
-1. Authentication → Sign-in method
-2. Habilita "Email/Password"
-3. (Opcional) Habilita "Google" para OAuth
+> 🎲 *Alea iacta est* — La suerte está echada
 
-### 3. Configuración de Firestore
-En Firebase Console:
-1. Firestore Database → Create database
-2. Selecciona "Start in test mode" (para desarrollo)
-3. Selecciona la región más cercana
+---
 
-### 4. Reglas de Firestore (Producción)
-```javascript
-rules_version = '2';
-service cloud.firestore {
-  match /databases/{database}/documents {
-    match /users/{userId} {
-      allow read: if request.auth != null;
-      allow write: if request.auth != null && request.auth.uid == userId;
-    }
-    match /challenges/{challengeId} {
-      allow read: if request.auth != null;
-      allow create: if request.auth != null;
-      allow update: if request.auth != null && 
-        (request.auth.uid == resource.data.creatorId || 
-         request.auth.uid == resource.data.opponentId);
-    }
-    match /friendships/{friendshipId} {
-      allow read: if request.auth != null;
-      allow write: if request.auth != null;
-    }
-    match /messages/{messageId} {
-      allow read: if request.auth != null;
-      allow create: if request.auth != null;
-    }
-  }
-}
+## ✨ Características Principales
+
+### 🎯 Sistema de Retos
+- **Creación de retos** en 3 pasos con wizard interactivo
+- **8 categorías**: Fitness, Gaming, Estudio, Creatividad, Cocina, Música, Deportes, Otro
+- **4 niveles de dificultad** con multiplicadores de apuesta (1x–5x)
+- **Retos públicos y privados** entre amigos
+- **Seguimiento de estado**: Activo, Pendiente, Completado, Cancelado
+
+### 💰 Economía Virtual
+- **Monedas Alea (₳)** como divisa principal
+- **Sistema de apuestas** con multiplicadores por dificultad
+- **Recompensas** por victorias, logros y rachas
+- **Balance en tiempo real** con gráfico de evolución semanal
+
+### 🏆 Gamificación
+- **Sistema de niveles** (1–99) con títulos progresivos (Novato → Leyenda)
+- **16+ logros desbloqueables** en 4 categorías (General, Social, Competitivo, Legendario)
+- **Ranking global** con podio animado (Semanal / Histórico)
+- **Barra de XP** con progreso visual hacia el siguiente nivel
+
+### 👥 Social
+- **Sistema de amigos** con búsqueda y solicitudes
+- **Chat en tiempo real** entre amigos
+- **Perfiles detallados** con estadísticas, gráficos de rendimiento y logros
+- **Indicadores de estado** online/offline
+
+### 🔔 Notificaciones
+- **Centro de notificaciones** con tipos diferenciados (retos, amigos, sistema)
+- **Navegación contextual** desde cada notificación
+- **Marcar todo como leído** de un toque
+
+---
+
+## 🏗️ Arquitectura y Stack Técnico
+
+| Componente | Tecnología | Versión |
+|---|---|---|
+| **Lenguaje** | Kotlin | 2.0.21 |
+| **Build System** | Gradle KTS + AGP | 8.13.2 |
+| **Min SDK** | Android 8.0 Oreo | API 26 |
+| **Target/Compile SDK** | Android 15 | API 36 |
+| **UI** | Fragments + ViewBinding + XML | AndroidX |
+| **Navegación** | Navigation Component + SafeArgs | 2.9.0 |
+| **Inyección de Dependencias** | Hilt (Dagger) | 2.53.1 |
+| **Backend** | Firebase Firestore | BOM 33.12.0 |
+| **Autenticación** | Firebase Authentication | — |
+| **Gráficos** | MPAndroidChart | 3.1.0 |
+| **Animaciones** | Lottie | 6.6.2 |
+| **Procesamiento** | KSP | 2.0.21-1.0.28 |
+
+### Patrón Arquitectónico — MVVM
+
+```
+┌──────────────────────────────────────────────┐
+│  View Layer (Fragments + ViewBinding + XML)  │
+├──────────────────────────────────────────────┤
+│  ViewModel Layer (StateFlow + Hilt)          │
+├──────────────────────────────────────────────┤
+│  Repository Layer (Firebase / Demo Mode)     │
+├──────────────────────────────────────────────┤
+│  Model Layer (Data classes + Enums)          │
+└──────────────────────────────────────────────┘
 ```
 
-## Estructura del Proyecto
+---
+
+## 📂 Estructura del Proyecto
+
 ```
 app/src/main/java/com/example/alea/
-├── AleaApplication.kt          # Application class con @HiltAndroidApp
-├── MainActivity.kt             # Single Activity con Navigation
 ├── data/
-│   ├── model/                  # Data classes (User, Challenge, Message, etc.)
-│   └── repository/             # Repositorios para Firebase
+│   ├── model/              # User, Challenge, Achievement, Notification, Friendship, Message
+│   └── repository/         # AuthRepository, UserRepository, ChallengeRepository,
+│                           # FriendsRepository, NotificationRepository, ChatRepository
 ├── di/
-│   └── FirebaseModule.kt       # Módulo Hilt para Firebase
-└── ui/
-    ├── auth/                   # Login y Register
-    ├── challenge/              # Create Challenge, Detail
-    ├── chat/                   # Chat en tiempo real
-    ├── friends/                # Lista de amigos, Add Friend
-    ├── home/                   # Dashboard principal
-    ├── notifications/          # Centro de notificaciones
-    ├── onboarding/             # Pantalla de bienvenida
-    ├── profile/                # Perfil del usuario
-    ├── ranking/                # Leaderboard
-    └── settings/               # Configuración
+│   └── AppModule.kt        # Módulo Hilt con bindings de Firebase
+├── ui/
+│   ├── auth/               # LoginFragment, RegisterFragment
+│   ├── challenge/          # CreateChallengeFragment (wizard 3 pasos), ChallengeDetailFragment,
+│   │                       # VictoryFragment, CreateChallengeStepsAdapter
+│   ├── chat/               # ChatFragment con mensajes en tiempo real
+│   ├── components/         # PerformanceChartView (Custom View)
+│   ├── friends/            # FriendsFragment, AddFriendBottomSheet
+│   ├── home/               # HomeFragment, ChallengesAdapter, HomeViewModel
+│   ├── notifications/      # NotificationsFragment, NotificationsAdapter
+│   ├── onboarding/         # OnboardingFragment con animación Lottie
+│   ├── profile/            # ProfileFragment, AchievementsAdapter, ProfileViewModel
+│   ├── ranking/            # RankingFragment con podio Top 3, RankingAdapter
+│   └── settings/           # SettingsFragment
+├── AleaApplication.kt      # @HiltAndroidApp
+└── MainActivity.kt          # Single Activity + Navigation + Bottom Navigation
 ```
 
-## Pantallas Implementadas
-1. ✅ Onboarding
-2. ✅ Login
-3. ✅ Register  
-4. ✅ Home Dashboard
-5. ✅ Ranking
-6. ✅ Create Challenge (Wizard 3 pasos)
-7. ✅ Challenge Detail
-8. ✅ Friends
-9. ✅ Add Friend (Bottom Sheet)
-10. ✅ Chat
-11. ✅ Profile
-12. ✅ Settings
-13. ✅ Notifications
+---
 
-## Sistema de Diseño
-### Colores
-- **Background**: #121212 (negro profundo)
-- **Surface**: #1E1E2C (glass effect)
-- **Primary Gradient**: #FF8C42 → #FF4B6A (naranja a rosa)
-- **Secondary Gradient**: #4E54C8 → #8F94FB (violeta a azul)
+## 📱 Pantallas (13 implementadas)
 
-# ALEA — Especificación completa de la aplicación Android (Kotlin)
+| # | Pantalla | Descripción |
+|---|---|---|
+| 1 | **Onboarding** | Animación Lottie + presentación de features |
+| 2 | **Login** | Auth con email/password + Google Sign-In |
+| 3 | **Register** | Registro con validaciones completas |
+| 4 | **Home** | Balance ₳, gráfico de evolución, retos recientes, acciones rápidas, XP bar |
+| 5 | **Ranking** | Podio Top 3 + lista completa + toggle Semanal/Histórico |
+| 6 | **Crear Reto** | Wizard de 3 pasos: categoría → oponente → detalles |
+| 7 | **Victoria** | Celebración con monedas y XP ganados |
+| 8 | **Detalle del Reto** | Info completa con participantes y acciones |
+| 9 | **Amigos** | Lista con estado online/offline + búsqueda |
+| 10 | **Chat** | Mensajes en tiempo real estilo burbujas |
+| 11 | **Perfil** | Stats, logros, rendimiento semanal, retos filtrados (completados/pendientes) |
+| 12 | **Notificaciones** | Lista tipificada con acciones contextuales |
+| 13 | **Ajustes** | Cuenta, tema, seguridad, cerrar sesión |
 
-![ALEA](app/src/main/res/drawable/ic_launcher_foreground.png)
+---
 
-Última versión: 1.0 • Febrero 2026
+## 🎨 Sistema de Diseño — Neon Glass Dark Theme
 
-Tabla de contenidos
-- [Visión general](#visión-general)
-- [Quick Start](#quick-start)
-- [Características destacadas](#características-destacadas)
-- [Sistema de diseño — IMMERSIVE NEON GLASS](#sistema-de-diseño---immersive-neon-glass)
-- [Navegación y pantallas principales](#navegación-y-pantallas-principales)
-- [Componentes reutilizables](#componentes-reutilizables)
-- [Modelos de datos (resumen)](#modelos-de-datos-resumen)
-- [Arquitectura y decisiones técnicas](#arquitectura-y-decisiones-técnicas)
-- [Dependencias clave](#dependencias-clave)
-- [Estructura de carpetas](#estructura-de-carpetas)
-- [Roadmap y Fases](#roadmap-y-fases)
-- [Contribuir](#contribuir)
-- [Contacto y licencia](#contacto-y-licencia)
+| Elemento | Valor |
+|---|---|
+| **Background** | `#0A0E1A` |
+| **Surface** | `#1A1E2E` con glass-morphism |
+| **Primary Gradient** | `#00F5FF` → `#8B5CF6` (Cyan → Purple) |
+| **Secondary Gradient** | `#FF6B9D` → `#C084FC` (Pink → Purple) |
+| **Solar Gradient** | `#F59E0B` → `#EF4444` (Amber → Red) |
+| **Gold/Silver/Bronze** | `#FFD700` / `#C0C0C0` / `#CD7F32` |
+| **Success / Error** | `#4ADE80` / `#EF4444` |
+| **Glass Border** | `#FFFFFF` @ 10% opacity |
 
-## Visión general
+### Componentes Custom
+- `PerformanceChartView` — Gráfico de barras animado (Custom View)
+- Glass Cards con bordes semi-transparentes
+- FAB con gradiente radial
+- Segmented controls con toggle groups
+- Badge system (Active, Won, Lost, Trend)
 
-ALEA es una plataforma de gamificación social competitiva para retos y apuestas amistosas entre amigos. Actúa como árbitro social, facilita la creación de retos, rastrea resultados y gestiona una economía de reputación con "Alea Coins".
+### 6 Animaciones de Navegación
+- `fade_in.xml`, `fade_out.xml`, `fade_scale_in.xml`
+- `slide_in_right.xml`, `slide_out_left.xml`, `slide_in_left.xml`, `slide_out_right.xml`
 
-Target: Generación Z y Millennials (18–35 años).
+---
 
-Plataforma: Android (Kotlin, Jetpack Compose) • Arquitectura: MVVM + Hilt • Min SDK: 26 • Target SDK: 34
+## 🚀 Demo Mode
 
-## Quick Start
+ALEA incluye un **modo demo completo** que funciona sin conexión a Firebase:
 
-Requisitos previos: Android Studio (Arctic Fox o superior), JDK 17.
+- **Usuario demo**: Player One — Nivel 12, 12,450 ₳, 4 logros desbloqueados
+- **12 usuarios ficticios** con perfiles variados para ranking
+- **6 retos de ejemplo** en diferentes categorías y estados
+- **Notificaciones simuladas** con timestamps relativos
+- **Chat mock** con mensajes de prueba
+- **16 logros predefinidos** con recompensas de XP y monedas
 
-1. Clona el repositorio:
+> El modo demo se activa automáticamente cuando Firebase no está configurado (instancias `null`).
+
+---
+
+## ⚡ Instalación Rápida
 
 ```bash
+# 1. Clonar el repositorio
 git clone https://github.com/SantiCode17/ALEA.git
 cd ALEA
-```
 
-2. Añade tu `google-services.json` en `app/` (Firebase).
+# 2. Abrir en Android Studio
+#    File → Open → Seleccionar carpeta ALEA
 
-3. Sincroniza y ejecuta en Android Studio o desde terminal:
+# 3. Sincronizar Gradle (automático)
+#    O: File → Sync Project with Gradle Files
 
-```bash
-./gradlew clean assembleDebug
+# 4. Ejecutar en dispositivo/emulador
+#    Click ▶ Run — o desde terminal:
 ./gradlew installDebug
 ```
 
-4. Crea un proyecto en Firebase y habilita Authentication y Realtime/Firestore según prefieras (ver sección de configuración).
+> 📄 Para instrucciones detalladas, consulta **[SETUP_GUIDE.md](SETUP_GUIDE.md)**
 
-## Características destacadas
+---
 
-- Registro y autenticación (Email/Password, Google, Apple, Facebook)
-- Creación de retos mediante wizard (6 pasos)
-- Economía virtual (Alea Coins)
-- Sistema de amigos y chat 1:1 en tiempo real
-- Ranking / Leaderboard con Podium view
-- Perfil gamificado (niveles, XP, badges)
-- Notificaciones push (FCM)
-- Offline-first: Room + sincronización con Firebase
-- Animaciones y UI avanzadas (glassmorphism, neon glow, Lottie)
+## 🔧 Requisitos
 
-## Sistema de diseño — IMMERSIVE NEON GLASS
+- **Android Studio** Ladybug (2024.2.1) o superior
+- **JDK 17** o superior
+- **Android SDK** 36
+- **Dispositivo o emulador** con API 26+ (Android 8.0+)
 
-Fundamentos críticos para el diseño (resumen):
+---
 
-- Deep Dark Mode: background `#121212`, superficies `#1E1E2C` con opacidades.
-- Glassmorphism: backdrop blur (RenderEffect API 31+ / Blurry para API 26-30).
-- Gradientes exactos:
-  - Gradiente primario (Solar Flare): `#FF8C42` → `#FF4B6A` (CTAs, FAB)
-  - Gradiente secundario (Aurora): `#4E54C8` → `#8F94FB` (cards, badges)
-- Tipografía: Poppins (pesos: 900, 700, 600, 500, 400, 300)
-- Escalas de texto: Display 32sp, H1 28sp, H2 24sp, H3 20sp, Body 15sp, Caption 13sp, Small 11sp
-- Sombras: glow effect para botones principales con colores del gradiente
-- Animaciones: 300ms estándar, FastOutSlowIn; micro-interacciones obligatorias (pulse, scale, shimmer, confetti)
+## 🔥 Firebase (Opcional)
 
-Colores semánticos:
+La app funciona completamente en **modo demo** sin Firebase. Para conectar Firebase:
 
-- Success: `#4ADE80`
-- Error: `#EF4444`
-- Warning: `#FBBF24`
-- Info: `#60A5FA`
+1. Crea un proyecto en [Firebase Console](https://console.firebase.google.com/)
+2. Añade app Android con package `com.example.alea`
+3. Descarga `google-services.json` → carpeta `app/`
+4. Habilita **Authentication** (Email/Password)
+5. Crea base de datos **Firestore**
 
-### Notas de implementación visual
+---
 
-- Usar RenderEffect para blur en Android 12+ (API 31+). Para API 26-30 usar procesamiento de Bitmap o la librería Blurry.
-- Importar Poppins desde Google Fonts (Compose Google Fonts) y declarar todos los pesos en el tema.
+## 🛡️ Buenas Prácticas
 
-## Navegación y pantallas principales
+- ✅ Inyección de dependencias completa con Hilt
+- ✅ Null-safety en todas las instancias Firebase
+- ✅ Validación de entrada en formularios
+- ✅ Gestión de errores con fallback a modo demo
+- ✅ StateFlow para estado reactivo sin memory leaks
+- ✅ ViewBinding tipado (sin `findViewById`)
+- ✅ SafeArgs para navegación segura
+- ✅ ProGuard configurado para release builds
+- ✅ Localización completa en español
 
-La app usa una Single Activity con NavHost (Navigation Compose). Estructura de tabs (Bottom Navigation flotante):
+---
 
-Orden de pestañas:
-1. Home (house)
-2. Ranking (trophy)
-3. FAB central — Create Challenge
-4. Friends (users)
-5. Profile (user_circle)
+## 📄 Licencia
 
-FAB: diámetro 56dp, gradiente Solar Flare, icono plus_bold 24dp, rotación y scale al presionar.
+Proyecto académico — Módulo **Diseño de Interfaces** · Ciclo Formativo **DAM** (Desarrollo de Aplicaciones Multiplataforma)
 
-Pantallas principales (resumen):
+## 👤 Autor
 
-- Splash & Onboarding (animaciones Lottie)
-- Login / Registro (social logins)
-- Home Dashboard (balance, últimos retos, quick actions)
-- Ranking & Podium (custom Canvas)
-- Friends (lista, add friend modal)
-- Chat (burbujas, sticky input)
-- Create Challenge (wizard 6 pasos)
-- Profile (parallax header, stats)
-- Settings
-
-Cada pantalla incluye variantes para tablets y ajustes responsivos.
-
-## Componentes reutilizables
-
-Incluye componentes Compose listos: PrimaryButton (gradiente), SecondaryButton, ChipButton, GlassTextField, GlassCard, PulseClickable, ShimmerEffect.
-
-Ejemplos de contrato (Inputs / Outputs):
-
-- PrimaryButton: (text:String, onClick:()->Unit, enabled:Boolean) → botón estilizado con gradiente y feedback táctil.
-- GlassTextField: (value:String, onValueChange:(String)->Unit, label:String) → TextField con estilo glass + validaciones.
-
-Edge cases a cubrir cuando se implemente: campos vacíos, conexión intermitente, timeouts en autenticación social, conflicto de sincronización de coins.
-
-## Modelos de datos (resumen)
-
-- User: id, email, username, displayName, avatarUrl, coins, level, xp, winRate, totalChallenges, completedChallenges, ranking, isOnline
-- Challenge: id, creatorId, title, description, category, difficulty, stake, deadline, participants, status, winnerId
-- Message: id, senderId, receiverId, text, timestamp, isRead, type
-- Achievement: id, name, description, emoji, requirement, unlockedAt
-
-Las entidades tienen contrapartida Room (@Entity) para cache local y DTOs para Firebase.
-
-## Arquitectura y decisiones técnicas
-
-- Patrón: MVVM + Repositories + UseCases
-- DI: Hilt
-- State: StateFlow / LiveData según caso
-- Almacenamiento local: Room (offline-first)
-- Sincronización: Firebase Realtime Database o Firestore (según tu preferencia). WorkManager para sincronización en background.
-- Notificaciones: FCM
-- Ofuscación: ProGuard/R8 en release
-
-Seguridad: reglas de Firebase, validación server-side (Cloud Functions) para transacciones de coins, EncryptedSharedPreferences para tokens.
-
-## Dependencias clave
-
-- Kotlin 1.9.x
-- Android Gradle Plugin 8.2.x
-- Jetpack Compose (BOM)
-- Hilt (2.48+)
-- Firebase (Auth, Database/Firestore, Storage, Messaging)
-- Room 2.6.x
-- Coil (image loading)
-- Lottie (animaciones)
-- MPAndroidChart (gráficas)
-- Blurry (blur fallback en API < 31)
-
-Consulta `app/build.gradle.kts` para la lista completa y versiones pinneadas.
-
-## Estructura de carpetas
-
-Resumen (ruta principal):
-
-```
-app/src/main/java/com/alea/app/
-├── data/
-│   ├── local/          # Room (dao, entities)
-│   ├── remote/         # Firebase services
-│   └── repository/     # Repositorios
-├── domain/             # UseCases
-├── ui/                 # Screens, components, theme
-├── di/                 # Hilt modules
-└── AleaApplication.kt
-```
-
-## Roadmap y fases
-
-- Fase 1 — MVP (4 semanas): Autenticación Email/Google, diseño theme, home básico, crear retos básico, perfil, monedas locales.
-- Fase 2 — Social (3 semanas): amigos, chat 1:1, ranking, FCM, sincronización Firebase.
-- Fase 3 — Gamificación (2 semanas): niveles, achievements, estadísticas avanzadas.
-- Fase 4 — Polish (2 semanas): animaciones avanzadas, onboarding interactivo, tests y optimizaciones.
-
-## Contribuir
-
-Si quieres contribuir:
-
-1. Fork y crea una rama feature/mi-feature
-2. Abre un PR con descripción y screenshots
-3. Sigue la guía de estilo (Kotlin + Compose lint)
-
-Checklist mínima para PR:
-
-- Código probado en debug
-- Tests unitarios para lógica crítica
-- No revelar secretos en el repo
-
-## Build & ejecución (rápido)
-
-```bash
-# Build y ejecutar desde la raíz
-./gradlew clean assembleDebug
-./gradlew installDebug
-```
-
-Para desarrollo en Android Studio: abrir el proyecto, sincronizar Gradle y ejecutar en un emulador o dispositivo.
-
-## Archivos importantes a añadir (antes de ejecutar)
-
-- `app/google-services.json` — configuración Firebase
-- Variables secretas para OAuth providers (en Gradle properties o en CI secreto)
-
-## Contacto y licencia
-
-Autor: SantiCode17
-Repositorio: https://github.com/SantiCode17/ALEA
-
+**Santiago** — [@SantiCode17](https://github.com/SantiCode17)

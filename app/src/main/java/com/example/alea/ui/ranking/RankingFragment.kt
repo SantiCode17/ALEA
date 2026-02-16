@@ -56,26 +56,31 @@ class RankingFragment : Fragment() {
     private fun observeState() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.uiState.collect { state ->
+                val suffix = if (state.isWeekly) "wins" else "pts"
+
                 // Update podium
                 if (state.topThree.isNotEmpty()) {
                     state.topThree.getOrNull(0)?.let { first ->
                         binding.firstName.text = first.username
-                        binding.firstPoints.text = "${formatNumber(first.coins)} pts"
+                        val value = if (state.isWeekly) first.wins.toLong() else first.coins
+                        binding.firstPoints.text = "${formatNumber(value)} $suffix"
                     }
                     state.topThree.getOrNull(1)?.let { second ->
                         binding.secondName.text = second.username
-                        binding.secondPoints.text = "${formatNumber(second.coins)} pts"
+                        val value = if (state.isWeekly) second.wins.toLong() else second.coins
+                        binding.secondPoints.text = "${formatNumber(value)} $suffix"
                     }
                     state.topThree.getOrNull(2)?.let { third ->
                         binding.thirdName.text = third.username
-                        binding.thirdPoints.text = "${formatNumber(third.coins)} pts"
+                        val value = if (state.isWeekly) third.wins.toLong() else third.coins
+                        binding.thirdPoints.text = "${formatNumber(value)} $suffix"
                     }
                 }
 
                 // Update your position card
                 binding.yourPositionName.text = state.currentUserName.ifEmpty { "Tú" }
                 binding.yourPositionNumber.text = "#${state.currentUserRank}"
-                binding.yourPositionPoints.text = "${formatNumber(state.currentUserPoints)} pts"
+                binding.yourPositionPoints.text = "${formatNumber(state.currentUserPoints)} $suffix"
 
                 // Update list
                 rankingAdapter.submitList(state.restOfRanking)

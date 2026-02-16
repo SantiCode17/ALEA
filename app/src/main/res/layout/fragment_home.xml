@@ -120,6 +120,44 @@
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="+12.5%" />
 
+                <!-- Level & XP Progress -->
+                <TextView
+                    android:id="@+id/levelText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:textColor="#CCFFFFFF"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/coinsAmount"
+                    tools:text="Nivel 12" />
+
+                <TextView
+                    android:id="@+id/xpText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#99FFFFFF"
+                    android:textSize="11sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/levelText"
+                    app:layout_constraintBottom_toBottomOf="@id/levelText"
+                    tools:text="750 / 1000 XP" />
+
+                <ProgressBar
+                    android:id="@+id/xpProgressBar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="6dp"
+                    android:layout_marginTop="6dp"
+                    android:max="100"
+                    android:progress="75"
+                    android:progressDrawable="@drawable/bg_xp_progress"
+                    android:indeterminate="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/levelText" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -277,7 +315,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="Challenge"
+                        android:text="@string/action_new_challenge"
                         android:textColor="@color/alea_text_primary"
                         android:textSize="12sp"
                         android:textStyle="bold" />
@@ -314,7 +352,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="Friends"
+                        android:text="@string/action_find_friends"
                         android:textColor="@color/alea_text_primary"
                         android:textSize="12sp"
                         android:textStyle="bold" />
@@ -351,7 +389,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="Ranking"
+                        android:text="@string/action_view_ranking"
                         android:textColor="@color/alea_text_primary"
                         android:textSize="12sp"
                         android:textStyle="bold" />

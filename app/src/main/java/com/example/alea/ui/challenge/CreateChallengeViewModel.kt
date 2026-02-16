@@ -131,6 +131,10 @@ class CreateChallengeViewModel @Inject constructor(
         _uiState.value = _uiState.value.copy(error = null)
     }
 
+    fun onSuccessConsumed() {
+        _uiState.value = _uiState.value.copy(isSuccess = false)
+    }
+
     fun createChallenge() {
         val state = _uiState.value
         val userId = authRepository.currentUserId ?: "demo_user_123"

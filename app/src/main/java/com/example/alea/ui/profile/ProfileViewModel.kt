@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.alea.data.model.Achievement
 import com.example.alea.data.model.Achievements
 import com.example.alea.data.model.Challenge
+import com.example.alea.data.model.ChallengeStatus
 import com.example.alea.data.model.User
 import com.example.alea.data.repository.AuthRepository
 import com.example.alea.data.repository.ChallengeRepository
@@ -79,8 +80,34 @@ class ProfileViewModel @Inject constructor(
         _uiState.value = _uiState.value.copy(showCompleted = showCompleted)
     }
 
+    /**
+     * Returns challenges filtered by the current toggle state.
+     * Completed = COMPLETED status, Incomplete = ACTIVE + PENDING
+     */
+    val filteredChallenges: List<Challenge>
+        get() {
+            val all = _uiState.value.challenges
+            return if (_uiState.value.showCompleted) {
+                all.filter { it.status == ChallengeStatus.COMPLETED }
+            } else {
+                all.filter { it.status == ChallengeStatus.ACTIVE || it.status == ChallengeStatus.PENDING }
+            }
+        }
+
     fun refreshProfile() {
         _uiState.value = _uiState.value.copy(isLoading = true)
         loadProfile()
+    }
+
+    fun updateProfile(username: String, displayName: String) {
+        val currentUser = _uiState.value.user ?: return
+        val updatedUser = currentUser.copy(
+            username = username,
+            displayName = displayName
+        )
+        viewModelScope.launch {
+            userRepository.updateUser(updatedUser)
+            _uiState.value = _uiState.value.copy(user = updatedUser)
+        }
     }
 }

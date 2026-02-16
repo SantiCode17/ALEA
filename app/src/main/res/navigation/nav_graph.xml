@@ -14,11 +14,15 @@
         <action
             android:id="@+id/action_onboarding_to_login"
             app:destination="@id/loginFragment"
+            app:enterAnim="@anim/fade_scale_in"
+            app:exitAnim="@anim/fade_out"
             app:popUpTo="@id/onboardingFragment"
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_onboarding_to_home"
             app:destination="@id/homeFragment"
+            app:enterAnim="@anim/fade_scale_in"
+            app:exitAnim="@anim/fade_out"
             app:popUpTo="@id/onboardingFragment"
             app:popUpToInclusive="true" />
     </fragment>
@@ -30,10 +34,16 @@
         tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_login_to_register"
-            app:destination="@id/registerFragment" />
+            app:destination="@id/registerFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_login_to_home"
             app:destination="@id/homeFragment"
+            app:enterAnim="@anim/fade_scale_in"
+            app:exitAnim="@anim/fade_out"
             app:popUpTo="@id/nav_graph"
             app:popUpToInclusive="true" />
     </fragment>
@@ -46,11 +56,15 @@
         <action
             android:id="@+id/action_register_to_login"
             app:destination="@id/loginFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
             app:popUpTo="@id/loginFragment"
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_register_to_home"
             app:destination="@id/homeFragment"
+            app:enterAnim="@anim/fade_scale_in"
+            app:exitAnim="@anim/fade_out"
             app:popUpTo="@id/nav_graph"
             app:popUpToInclusive="true" />
     </fragment>
@@ -63,13 +77,25 @@
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_home_to_challengeDetail"
-            app:destination="@id/challengeDetailFragment" />
+            app:destination="@id/challengeDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_home_to_notifications"
-            app:destination="@id/notificationsFragment" />
+            app:destination="@id/notificationsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_home_to_createChallenge"
-            app:destination="@id/createChallengeFragment" />
+            app:destination="@id/createChallengeFragment"
+            app:enterAnim="@anim/fade_scale_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_scale_in"
+            app:popExitAnim="@anim/fade_out" />
     </fragment>
 
     <fragment
@@ -88,7 +114,11 @@
             app:destination="@id/addFriendBottomSheet" />
         <action
             android:id="@+id/action_friends_to_chat"
-            app:destination="@id/chatFragment" />
+            app:destination="@id/chatFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
     <fragment
@@ -98,7 +128,18 @@
         tools:layout="@layout/fragment_profile">
         <action
             android:id="@+id/action_profile_to_settings"
-            app:destination="@id/settingsFragment" />
+            app:destination="@id/settingsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_profile_to_challengeDetail"
+            app:destination="@id/challengeDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
     <!-- Secondary Screens -->
@@ -110,6 +151,8 @@
         <action
             android:id="@+id/action_createChallenge_to_victory"
             app:destination="@id/victoryFragment"
+            app:enterAnim="@anim/fade_scale_in"
+            app:exitAnim="@anim/fade_out"
             app:popUpTo="@id/createChallengeFragment"
             app:popUpToInclusive="true" />
     </fragment>
@@ -151,6 +194,8 @@
         <action
             android:id="@+id/action_settings_to_login"
             app:destination="@id/loginFragment"
+            app:enterAnim="@anim/fade_scale_in"
+            app:exitAnim="@anim/fade_out"
             app:popUpTo="@id/nav_graph"
             app:popUpToInclusive="true" />
     </fragment>
@@ -162,7 +207,11 @@
         tools:layout="@layout/fragment_notifications">
         <action
             android:id="@+id/action_notifications_to_challengeDetail"
-            app:destination="@id/challengeDetailFragment" />
+            app:destination="@id/challengeDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
     <!-- Bottom Sheet -->

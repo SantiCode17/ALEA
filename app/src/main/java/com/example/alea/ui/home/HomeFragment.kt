@@ -146,13 +146,17 @@ class HomeFragment : Fragment() {
         }
 
         binding.viewAllText.setOnClickListener {
-            // TODO: Navigate to all challenges
+            findNavController().navigate(R.id.profileFragment)
         }
     }
 
     private fun observeState() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.uiState.collect { state ->
+                // Show/hide loading
+                binding.balanceCard.visibility = if (state.isLoading) View.INVISIBLE else View.VISIBLE
+                binding.statsCard.visibility = if (state.isLoading) View.INVISIBLE else View.VISIBLE
+
                 state.user?.let { user ->
                     binding.greetingText.text = getString(R.string.home_greeting, user.username)
                     binding.coinsAmount.text = NumberFormat.getNumberInstance(Locale.US)
@@ -160,12 +164,19 @@ class HomeFragment : Fragment() {
 
                     val trend = if (user.wins > 0) "+${(user.winRate / 10).toInt()}%" else "0%"
                     binding.trendBadge.text = trend
+
+                    // Level & XP
+                    binding.levelText.text = getString(R.string.home_level_format, user.level)
+                    binding.xpText.text = getString(R.string.home_xp_progress_format, user.xp, user.xpToNextLevel)
+                    binding.xpProgressBar.max = user.xpToNextLevel
+                    binding.xpProgressBar.progress = user.xp
                 }
 
                 challengesAdapter.submitList(state.challenges)
 
                 // Show weekly improvement
-                binding.improvementText.text = "+150₳ this week"
+                val weeklyGain = state.user?.let { "+${(it.coins * 0.12).toInt()}₳ esta semana" } ?: ""
+                binding.improvementText.text = weeklyGain
             }
         }
     }
