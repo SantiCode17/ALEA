@@ -1,407 +1,315 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/alea_background"
-    android:fillViewport="true"
-    android:clipToPadding="false">
+    android:background="@color/color_background"
+    android:clipToPadding="false"
+    android:paddingBottom="100dp">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="24dp">
+        android:orientation="vertical">
 
-        <!-- HEADER -->
-        <ImageView
-            android:id="@+id/avatarImage"
-            android:layout_width="44dp"
-            android:layout_height="44dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/bg_avatar_border"
-            android:padding="2dp"
-            android:src="@drawable/ic_profile"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/alea_text_primary" />
-
-        <TextView
-            android:id="@+id/greetingText"
-            android:layout_width="0dp"
+        <!-- Header -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginEnd="12dp"
-            android:textColor="@color/alea_text_primary"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@id/avatarImage"
-            app:layout_constraintEnd_toStartOf="@id/notificationButton"
-            app:layout_constraintStart_toEndOf="@id/avatarImage"
-            app:layout_constraintTop_toTopOf="@id/avatarImage"
-            tools:text="Hi, Player!" />
+            android:paddingHorizontal="20dp"
+            android:paddingTop="16dp">
 
-        <ImageButton
-            android:id="@+id/notificationButton"
-            android:layout_width="44dp"
-            android:layout_height="44dp"
-            android:layout_marginEnd="20dp"
-            android:background="@drawable/bg_icon_button"
-            android:contentDescription="@string/cd_notification"
-            android:padding="10dp"
-            android:src="@drawable/ic_notification"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/avatarImage"
-            app:tint="@color/alea_text_primary" />
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/home_avatar"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:src="@drawable/oso_alea_de_pie_saludando"
+                app:civ_border_width="2dp"
+                app:civ_border_color="@color/color_primary_start"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
 
-        <!-- BALANCE CARD -->
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/balanceCard"
-            android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:orientation="vertical"
+                app:layout_constraintTop_toTopOf="@id/home_avatar"
+                app:layout_constraintBottom_toBottomOf="@id/home_avatar"
+                app:layout_constraintStart_toEndOf="@id/home_avatar"
+                app:layout_constraintEnd_toStartOf="@id/home_notifications">
+
+                <TextView
+                    android:id="@+id/home_greeting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins"
+                    android:text="@string/home_greeting"
+                    android:textColor="@color/color_text_secondary"
+                    android:textSize="13sp"/>
+
+                <TextView
+                    android:id="@+id/home_username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_bold"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"/>
+            </LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/home_notifications"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_notifications"
+                    app:tint="@color/white"/>
+
+                <View
+                    android:id="@+id/home_notification_badge"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_gravity="top|end"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/shape_fab_gradient"/>
+            </FrameLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- Coin Banner -->
+        <LinearLayout
+            android:id="@+id/home_coin_banner"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="20dp"
-            app:cardBackgroundColor="@android:color/transparent"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="0dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/avatarImage">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bg_balance_card"
-                android:padding="20dp">
-
-                <ImageView
-                    android:id="@+id/coinIcon"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/ic_coin"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/coinsLabel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:text="@string/home_alea_coins"
-                    android:textColor="#CCFFFFFF"
-                    android:textSize="13sp"
-                    app:layout_constraintStart_toEndOf="@id/coinIcon"
-                    app:layout_constraintTop_toTopOf="@id/coinIcon" />
-
-                <TextView
-                    android:id="@+id/coinsAmount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:textSize="32sp"
-                    android:textStyle="bold"
-                    android:letterSpacing="-0.02"
-                    app:layout_constraintStart_toStartOf="@id/coinsLabel"
-                    app:layout_constraintTop_toBottomOf="@id/coinsLabel"
-                    tools:text="1,245" />
-
-                <TextView
-                    android:id="@+id/trendBadge"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_badge_trend"
-                    android:paddingHorizontal="10dp"
-                    android:paddingVertical="4dp"
-                    android:textColor="@color/white"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="+12.5%" />
-
-                <!-- Level & XP Progress -->
-                <TextView
-                    android:id="@+id/levelText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:textColor="#CCFFFFFF"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/coinsAmount"
-                    tools:text="Nivel 12" />
-
-                <TextView
-                    android:id="@+id/xpText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="#99FFFFFF"
-                    android:textSize="11sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/levelText"
-                    app:layout_constraintBottom_toBottomOf="@id/levelText"
-                    tools:text="750 / 1000 XP" />
-
-                <ProgressBar
-                    android:id="@+id/xpProgressBar"
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:layout_width="0dp"
-                    android:layout_height="6dp"
-                    android:layout_marginTop="6dp"
-                    android:max="100"
-                    android:progress="75"
-                    android:progressDrawable="@drawable/bg_xp_progress"
-                    android:indeterminate="false"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/levelText" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <!-- STATS CARD -->
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/statsCard"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="12dp"
-            app:cardBackgroundColor="@color/alea_surface"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="0dp"
-            app:strokeColor="@color/alea_glass_border"
-            app:strokeWidth="1dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/balanceCard">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="16dp">
-
-                <TextView
-                    android:id="@+id/statsTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/home_last_victory"
-                    android:textColor="@color/alea_text_primary"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/improvementText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/alea_success"
-                    android:textSize="13sp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="+150 this week" />
-
-                <com.github.mikephil.charting.charts.LineChart
-                    android:id="@+id/victoryChart"
-                    android:layout_width="0dp"
-                    android:layout_height="80dp"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/statsTitle" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <!-- RECENT CHALLENGES -->
-        <TextView
-            android:id="@+id/challengesTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="24dp"
-            android:text="@string/home_recent_challenges"
-            android:textColor="@color/alea_text_primary"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/statsCard" />
-
-        <TextView
-            android:id="@+id/viewAllText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:paddingHorizontal="4dp"
-            android:paddingVertical="4dp"
-            android:text="@string/home_view_all"
-            android:textColor="@color/alea_primary"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="@id/challengesTitle"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/challengesTitle" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/challengesRecyclerView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:clipToPadding="false"
+            android:background="@drawable/gradient_card_dark"
+            android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/challengesTitle"
-            tools:itemCount="3"
-            tools:listitem="@layout/item_challenge_card" />
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="16dp">
 
-        <!-- QUICK ACTIONS -->
-        <TextView
-            android:id="@+id/quickActionsTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="24dp"
-            android:text="@string/home_quick_actions"
-            android:textColor="@color/alea_text_primary"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/challengesRecyclerView" />
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/ic_coin"
+                app:tint="@color/color_coins"/>
 
-        <LinearLayout
-            android:id="@+id/quickActionsContainer"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="12dp"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/quickActionsTitle">
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/newChallengeAction"
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="6dp"
+                android:layout_marginStart="14dp"
                 android:layout_weight="1"
-                app:cardBackgroundColor="@color/alea_surface"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="0dp"
-                app:strokeColor="@color/alea_glass_border"
-                app:strokeWidth="1dp">
+                android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:paddingVertical="20dp"
-                    android:paddingHorizontal="12dp">
+                    android:fontFamily="@font/poppins"
+                    android:text="@string/home_coins_label"
+                    android:textColor="@color/color_text_secondary"
+                    android:textSize="12sp"/>
 
-                    <ImageView
-                        android:layout_width="28dp"
-                        android:layout_height="28dp"
-                        android:src="@drawable/ic_add"
-                        app:tint="@color/alea_primary" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="@string/action_new_challenge"
-                        android:textColor="@color/alea_text_primary"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/findFriendsAction"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="6dp"
-                android:layout_weight="1"
-                app:cardBackgroundColor="@color/alea_surface"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="0dp"
-                app:strokeColor="@color/alea_glass_border"
-                app:strokeWidth="1dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/home_coins_amount"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:paddingVertical="20dp"
-                    android:paddingHorizontal="12dp">
+                    android:fontFamily="@font/poppins_bold"
+                    android:textColor="@color/color_coins"
+                    android:textSize="22sp"/>
+            </LinearLayout>
 
-                    <ImageView
-                        android:layout_width="28dp"
-                        android:layout_height="28dp"
-                        android:src="@drawable/ic_friends"
-                        app:tint="@color/alea_secondary" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="@string/action_find_friends"
-                        android:textColor="@color/alea_text_primary"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/leaderboardAction"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
-                android:layout_weight="1"
-                app:cardBackgroundColor="@color/alea_surface"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="0dp"
-                app:strokeColor="@color/alea_glass_border"
-                app:strokeWidth="1dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:paddingVertical="20dp"
-                    android:paddingHorizontal="12dp">
-
-                    <ImageView
-                        android:layout_width="28dp"
-                        android:layout_height="28dp"
-                        android:src="@drawable/ic_trophy"
-                        app:tint="@color/alea_coin" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="@string/action_view_ranking"
-                        android:textColor="@color/alea_text_primary"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_chevron_right"
+                app:tint="@color/color_text_secondary"/>
         </LinearLayout>
 
-        <!-- Bottom spacer -->
-        <Space
+        <!-- Active Challenges Section -->
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="80dp"
-            app:layout_constraintTop_toBottomOf="@id/quickActionsContainer" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:orientation="vertical">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="20dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="@string/home_active_challenges"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"/>
+
+                <TextView
+                    android:id="@+id/home_see_all_challenges"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="@string/home_see_all"
+                    android:textColor="@color/color_primary_start"
+                    android:textSize="13sp"
+                    android:paddingVertical="4dp"/>
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/home_challenges_rv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:clipToPadding="false"
+                android:paddingHorizontal="20dp"
+                android:orientation="horizontal"/>
+        </LinearLayout>
+
+        <!-- Quick Stats -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="24dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/home_quick_stats"
+                android:textColor="@color/white"
+                android:textSize="18sp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal">
+
+                <!-- Stat Card 1 -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="6dp"
+                    android:background="@drawable/shape_card_surface"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingVertical="16dp">
+
+                    <TextView
+                        android:id="@+id/home_stat_wins"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_bold"
+                        android:textColor="@color/color_success"
+                        android:textSize="24sp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins"
+                        android:text="@string/home_stat_wins"
+                        android:textColor="@color/color_text_secondary"
+                        android:textSize="12sp"/>
+                </LinearLayout>
+
+                <!-- Stat Card 2 -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginHorizontal="6dp"
+                    android:background="@drawable/shape_card_surface"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingVertical="16dp">
+
+                    <TextView
+                        android:id="@+id/home_stat_streak"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_bold"
+                        android:textColor="@color/color_primary_start"
+                        android:textSize="24sp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins"
+                        android:text="@string/home_stat_streak"
+                        android:textColor="@color/color_text_secondary"
+                        android:textSize="12sp"/>
+                </LinearLayout>
+
+                <!-- Stat Card 3 -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="6dp"
+                    android:background="@drawable/shape_card_surface"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingVertical="16dp">
+
+                    <TextView
+                        android:id="@+id/home_stat_rank"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_bold"
+                        android:textColor="@color/color_coins"
+                        android:textSize="24sp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins"
+                        android:text="@string/home_stat_rank"
+                        android:textColor="@color/color_text_secondary"
+                        android:textSize="12sp"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Recent Activity -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="24dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/home_recent_activity"
+                android:textColor="@color/white"
+                android:textSize="18sp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/home_activity_rv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:nestedScrollingEnabled="false"/>
+        </LinearLayout>
+
+    </LinearLayout>
 </androidx.core.widget.NestedScrollView>

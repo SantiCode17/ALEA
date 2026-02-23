@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/main_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/alea_background"
-    tools:context=".MainActivity">
+    android:background="@color/color_background"
+    android:clipChildren="false"
+    android:clipToPadding="false">
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/nav_host_fragment"
@@ -14,50 +15,104 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:defaultNavHost="true"
-        app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:navGraph="@navigation/nav_graph"
         app:layout_constraintTop_toTopOf="parent"
-        app:navGraph="@navigation/nav_graph" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigation"
+    <!-- Floating Tab Bar -->
+    <LinearLayout
+        android:id="@+id/floating_tab_bar"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginBottom="12dp"
-        android:background="@drawable/bg_bottom_nav"
-        android:elevation="@dimen/elevation_lg"
-        android:visibility="gone"
-        app:itemActiveIndicatorStyle="@style/Alea.BottomNav.ActiveIndicator"
-        app:itemIconSize="22dp"
-        app:itemIconTint="@color/bottom_nav_colors"
-        app:itemTextColor="@color/bottom_nav_colors"
-        app:labelVisibilityMode="labeled"
+        android:layout_height="70dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/shape_floating_tab_bar"
+        android:elevation="12dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="8dp"
+        android:clipChildren="false"
+        android:clipToPadding="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_nav_menu"
-        tools:visibility="visible" />
+        app:layout_constraintStart_toStartOf="parent">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabCreateChallenge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:contentDescription="@string/nav_new_challenge"
-        android:src="@drawable/ic_add"
-        android:visibility="gone"
-        app:backgroundTint="@color/alea_primary"
-        app:elevation="@dimen/elevation_lg"
-        app:fabCustomSize="56dp"
-        app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:maxImageSize="24dp"
-        app:shapeAppearance="@style/Alea.ShapeAppearance.FAB"
-        app:tint="@color/white"
-        tools:visibility="visible" />
+        <ImageButton
+            android:id="@+id/tab_home"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Home"
+            android:src="@drawable/ic_home"
+            android:scaleType="centerInside"
+            android:padding="12dp"
+            app:tint="@color/color_primary_start"/>
 
+        <ImageButton
+            android:id="@+id/tab_friends"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Friends"
+            android:src="@drawable/ic_friends"
+            android:scaleType="centerInside"
+            android:padding="12dp"
+            android:alpha="0.6"
+            app:tint="@color/white"/>
+
+        <!-- FAB Center -->
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:gravity="center">
+            <ImageButton
+                android:id="@+id/fab_create"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="-32dp"
+                android:background="@drawable/shape_fab_gradient"
+                android:contentDescription="Create"
+                android:elevation="8dp"
+                android:src="@drawable/ic_add"
+                android:scaleType="centerInside"
+                android:padding="16dp"
+                app:tint="@color/white"/>
+        </FrameLayout>
+
+        <ImageButton
+            android:id="@+id/tab_settings"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Settings"
+            android:src="@drawable/ic_settings"
+            android:scaleType="centerInside"
+            android:padding="12dp"
+            android:alpha="0.6"
+            app:tint="@color/white"/>
+
+        <ImageButton
+            android:id="@+id/tab_profile"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Profile"
+            android:src="@drawable/ic_person"
+            android:scaleType="centerInside"
+            android:padding="12dp"
+            android:alpha="0.6"
+            app:tint="@color/white"/>
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

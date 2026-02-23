@@ -1,128 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/alea_background">
+    android:background="@color/color_background"
+    android:orientation="vertical">
 
     <!-- Header -->
-    <ImageButton
-        android:id="@+id/backButton"
-        android:layout_width="44dp"
-        android:layout_height="44dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/bg_icon_button"
-        android:contentDescription="@string/cd_back"
-        android:padding="10dp"
-        android:src="@drawable/ic_back"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/alea_text_primary" />
-
-    <ImageView
-        android:id="@+id/avatarImage"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="8dp"
-        android:background="@drawable/bg_avatar_border"
-        android:padding="2dp"
-        android:src="@drawable/ic_profile"
-        app:layout_constraintBottom_toBottomOf="@id/backButton"
-        app:layout_constraintStart_toEndOf="@id/backButton"
-        app:layout_constraintTop_toTopOf="@id/backButton"
-        app:tint="@color/alea_text_secondary" />
-
-    <TextView
-        android:id="@+id/friendName"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="20dp"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:textColor="@color/alea_text_primary"
-        android:textSize="17sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/avatarImage"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/avatarImage"
-        app:layout_constraintTop_toTopOf="@id/avatarImage"
-        tools:text="FriendName" />
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="12dp">
 
-    <!-- Divider -->
-    <View
-        android:id="@+id/headerDivider"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="@dimen/spacing_md"
-        android:background="@color/alea_divider"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/backButton" />
+        <ImageView
+            android:id="@+id/chat_back"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:padding="8dp"
+            android:src="@drawable/ic_back"
+            app:tint="@color/white"/>
 
-    <!-- Messages List -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/messagesRecyclerView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:clipToPadding="false"
-        android:padding="@dimen/spacing_md"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@id/inputContainer"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/headerDivider"
-        app:reverseLayout="false"
-        app:stackFromEnd="true"
-        tools:itemCount="10"
-        tools:listitem="@layout/item_message_sent" />
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/chat_avatar"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="8dp"
+            android:src="@drawable/oso_alea_normal_sin_fondo"
+            app:civ_border_width="1dp"
+            app:civ_border_color="@color/color_primary_start"/>
 
-    <!-- Input Container -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/inputContainer"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@color/alea_surface"
-        android:paddingHorizontal="12dp"
-        android:paddingVertical="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/messageInput"
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_input_field"
-            android:hint="@string/chat_message_hint"
-            android:inputType="textMultiLine"
-            android:maxLines="4"
-            android:minHeight="44dp"
-            android:paddingHorizontal="16dp"
-            android:paddingVertical="10dp"
-            android:textColor="@color/alea_text_primary"
-            android:textColorHint="@color/alea_text_hint"
-            android:textSize="15sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/sendButton"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
-        <ImageButton
-            android:id="@+id/sendButton"
+            <TextView
+                android:id="@+id/chat_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_semibold"
+                android:textColor="@color/white"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/chat_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins"
+                android:text="@string/chat_online"
+                android:textColor="@color/color_online"
+                android:textSize="12sp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_divider"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/chat_messages_rv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="8dp"/>
+
+    <!-- Input area -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_surface"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="8dp">
+
+        <EditText
+            android:id="@+id/chat_input"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_weight="1"
+            android:background="@drawable/shape_input_field"
+            android:fontFamily="@font/poppins"
+            android:hint="@string/chat_input_hint"
+            android:inputType="text"
+            android:paddingHorizontal="16dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/color_text_hint"
+            android:textSize="14sp"/>
+
+        <ImageView
+            android:id="@+id/chat_send_btn"
             android:layout_width="44dp"
             android:layout_height="44dp"
             android:layout_marginStart="8dp"
-            android:background="@drawable/bg_fab"
-            android:contentDescription="@string/cd_send_message"
+            android:background="@drawable/shape_fab_gradient"
             android:padding="10dp"
             android:src="@drawable/ic_send"
-            app:layout_constraintBottom_toBottomOf="@id/messageInput"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/messageInput"
-            app:tint="@color/white" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+            app:tint="@color/white"/>
+    </LinearLayout>
+</LinearLayout>

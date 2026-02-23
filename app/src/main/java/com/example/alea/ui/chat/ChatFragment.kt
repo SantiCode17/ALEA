@@ -5,27 +5,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.alea.data.MockDataProvider
+import com.example.alea.data.model.Message
 import com.example.alea.databinding.FragmentChatBinding
-import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
+import com.example.alea.ui.adapters.MessageAdapter
 
-@AndroidEntryPoint
 class ChatFragment : Fragment() {
 
     private var _binding: FragmentChatBinding? = null
     private val binding get() = _binding!!
+    private lateinit var adapter: MessageAdapter
 
-    private val viewModel: ChatViewModel by viewModels()
-    private lateinit var messagesAdapter: MessagesAdapter
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentChatBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -33,40 +26,22 @@ class ChatFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupRecyclerView()
-        setupClickListeners()
-        observeState()
-    }
+        binding.chatName.text = "Nuria Rodríguez"
+        binding.chatBack.setOnClickListener { findNavController().popBackStack() }
 
-    private fun setupRecyclerView() {
-        messagesAdapter = MessagesAdapter(viewModel.uiState.value.currentUserId)
-        binding.messagesRecyclerView.adapter = messagesAdapter
-    }
-
-    private fun setupClickListeners() {
-        binding.backButton.setOnClickListener {
-            findNavController().navigateUp()
+        val messages = MockDataProvider.chatWithNuria.toMutableList()
+        adapter = MessageAdapter(messages)
+        binding.chatMessagesRv.layoutManager = LinearLayoutManager(requireContext()).apply {
+            stackFromEnd = true
         }
+        binding.chatMessagesRv.adapter = adapter
 
-        binding.sendButton.setOnClickListener {
-            val text = binding.messageInput.text.toString()
-            if (text.isNotBlank()) {
-                viewModel.sendMessage(text)
-                binding.messageInput.text?.clear()
-            }
-        }
-    }
-
-    private fun observeState() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.uiState.collect { state ->
-                binding.friendName.text = state.friendName
-                messagesAdapter.submitList(state.messages) {
-                    // Scroll to bottom when new messages arrive
-                    if (state.messages.isNotEmpty()) {
-                        binding.messagesRecyclerView.scrollToPosition(state.messages.size - 1)
-                    }
-                }
+        binding.chatSendBtn.setOnClickListener {
+            val text = binding.chatInput.text.toString().trim()
+            if (text.isNotEmpty()) {
+                adapter.addMessage(Message(true, text, "Ahora"))
+                binding.chatInput.text?.clear()
+                binding.chatMessagesRv.scrollToPosition(adapter.itemCount - 1)
             }
         }
     }

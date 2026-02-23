@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    android:background="@drawable/shape_card_surface"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="14dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/activity_avatar"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:src="@drawable/oso_alea_normal_sin_fondo"
+        app:civ_border_width="1dp"
+        app:civ_border_color="@color/color_divider"/>
+
+    <TextView
+        android:id="@+id/activity_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_weight="1"
+        android:fontFamily="@font/poppins"
+        android:textColor="@color/color_text_secondary"
+        android:textSize="13sp"/>
+
+    <TextView
+        android:id="@+id/activity_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins"
+        android:textColor="@color/color_text_hint"
+        android:textSize="11sp"/>
+</LinearLayout>

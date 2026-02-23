@@ -1,33 +1,24 @@
 package com.example.alea.ui.auth
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.example.alea.MainActivity
 import com.example.alea.R
 import com.example.alea.databinding.FragmentLoginBinding
-import com.google.android.material.snackbar.Snackbar
-import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
-@AndroidEntryPoint
 class LoginFragment : Fragment() {
 
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: AuthViewModel by viewModels()
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -35,54 +26,72 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupClickListeners()
-        observeState()
-    }
+        binding.btnLogin.setOnClickListener {
+            val username = binding.inputUsername.text.toString().trim()
+            val password = binding.inputPassword.text.toString().trim()
 
-    private fun setupClickListeners() {
-        binding.signInButton.setOnClickListener {
-            val email = binding.emailEditText.text.toString().trim()
-            val password = binding.passwordEditText.text.toString()
-            viewModel.signIn(email, password)
+            // Validaciones
+            if (username.isEmpty()) {
+                binding.inputUsername.error = getString(R.string.login_error_empty_user)
+                shakeView(binding.inputUsername)
+                return@setOnClickListener
+            }
+            if (password.isEmpty()) {
+                binding.inputPassword.error = getString(R.string.login_error_empty_pass)
+                shakeView(binding.inputPassword)
+                return@setOnClickListener
+            }
+            if (password.length < 4) {
+                binding.inputPassword.error = getString(R.string.login_error_pass_short)
+                shakeView(binding.inputPassword)
+                return@setOnClickListener
+            }
+
+            // Comprobar que el usuario existe en SharedPreferences
+            val usersPrefs = requireActivity().getSharedPreferences("alea_users", Context.MODE_PRIVATE)
+            val savedPass = usersPrefs.getString("user_$username", null)
+
+            if (savedPass == null) {
+                binding.inputUsername.error = getString(R.string.login_error_not_registered)
+                shakeView(binding.inputUsername)
+                Toast.makeText(requireContext(), getString(R.string.login_error_not_registered), Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            if (savedPass != password) {
+                binding.inputPassword.error = getString(R.string.login_error_wrong_pass)
+                shakeView(binding.inputPassword)
+                Toast.makeText(requireContext(), getString(R.string.login_error_wrong_pass), Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // Login exitoso
+            requireActivity().getSharedPreferences("alea_prefs", Context.MODE_PRIVATE).edit()
+                .putBoolean("is_logged_in", true)
+                .putString("logged_user", username)
+                .apply()
+            startActivity(Intent(requireContext(), MainActivity::class.java))
+            requireActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+            requireActivity().finish()
         }
 
-        binding.signUpLink.setOnClickListener {
+        binding.btnGoRegister.setOnClickListener {
             findNavController().navigate(R.id.action_login_to_register)
         }
 
-        binding.googleButton.setOnClickListener {
-            // TODO: Implement Google Sign-In
+        binding.btnForgotPassword.setOnClickListener {
+            findNavController().navigate(R.id.action_login_to_forgot)
         }
     }
 
-    private fun observeState() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.uiState.collect { state ->
-                when (state) {
-                    is AuthUiState.Idle -> {
-                        binding.loadingProgress.isVisible = false
-                        binding.signInButton.isEnabled = true
-                    }
-                    is AuthUiState.Loading -> {
-                        binding.loadingProgress.isVisible = true
-                        binding.signInButton.isEnabled = false
-                        binding.signInButton.text = ""
-                    }
-                    is AuthUiState.Success -> {
-                        findNavController().navigate(R.id.action_login_to_home)
-                    }
-                    is AuthUiState.Error -> {
-                        binding.loadingProgress.isVisible = false
-                        binding.signInButton.isEnabled = true
-                        binding.signInButton.text = getString(R.string.login_sign_in)
-                        Snackbar.make(binding.root, state.message, Snackbar.LENGTH_LONG)
-                            .setBackgroundTint(resources.getColor(R.color.alea_error, null))
-                            .setTextColor(resources.getColor(R.color.white, null))
-                            .show()
-                    }
-                }
-            }
-        }
+    private fun shakeView(v: View) {
+        v.animate().translationX(10f).setDuration(50)
+            .withEndAction {
+                v.animate().translationX(-10f).setDuration(50)
+                    .withEndAction {
+                        v.animate().translationX(0f).setDuration(50).start()
+                    }.start()
+            }.start()
     }
 
     override fun onDestroyView() {

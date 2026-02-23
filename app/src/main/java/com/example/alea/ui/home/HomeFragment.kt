@@ -1,41 +1,27 @@
 package com.example.alea.ui.home
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.alea.R
+import com.example.alea.data.MockDataProvider
+import com.example.alea.data.model.ChallengeStatus
 import com.example.alea.databinding.FragmentHomeBinding
-import com.github.mikephil.charting.components.XAxis
-import com.github.mikephil.charting.data.Entry
-import com.github.mikephil.charting.data.LineData
-import com.github.mikephil.charting.data.LineDataSet
-import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
+import com.example.alea.ui.adapters.ActivityAdapter
+import com.example.alea.ui.adapters.ChallengeCardAdapter
 import java.text.NumberFormat
 import java.util.Locale
 
-@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: HomeViewModel by viewModels()
-    private lateinit var challengesAdapter: ChallengesAdapter
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -43,141 +29,46 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupRecyclerView()
-        setupVictoryChart()
-        setupClickListeners()
-        observeState()
-    }
+        val user = MockDataProvider.currentUser
 
-    private fun setupRecyclerView() {
-        challengesAdapter = ChallengesAdapter { challenge ->
-            val action = HomeFragmentDirections.actionHomeToChallengeDetail(challenge.id)
-            findNavController().navigate(action)
+        // Header
+        binding.homeUsername.text = user.name.split(" ").first()
+
+        // Coins
+        val nf = NumberFormat.getNumberInstance(Locale("es", "ES"))
+        binding.homeCoinsAmount.text = "★ ${nf.format(user.aleaCoins)}"
+
+        // Navigate to coin history
+        binding.homeCoinBanner.setOnClickListener {
+            findNavController().navigate(R.id.action_home_to_coinHistory)
         }
 
-        binding.challengesRecyclerView.apply {
-            adapter = challengesAdapter
-            layoutManager = LinearLayoutManager(
-                requireContext(),
-                LinearLayoutManager.HORIZONTAL,
-                false
-            )
+        // Challenges RecyclerView (horizontal)
+        val activeChallenges = MockDataProvider.challenges.filter {
+            it.status == ChallengeStatus.ACTIVE || it.status == ChallengeStatus.PENDING
         }
-    }
-
-    private fun setupVictoryChart() {
-        val chart = binding.victoryChart
-
-        // Styling
-        chart.apply {
-            description.isEnabled = false
-            legend.isEnabled = false
-            setTouchEnabled(false)
-            setDrawGridBackground(false)
-            setDrawBorders(false)
-
-            // X-Axis
-            xAxis.apply {
-                isEnabled = false
-                setDrawGridLines(false)
-                position = XAxis.XAxisPosition.BOTTOM
-            }
-
-            // Left Y-Axis
-            axisLeft.apply {
-                isEnabled = false
-                setDrawGridLines(false)
-            }
-
-            // Right Y-Axis
-            axisRight.isEnabled = false
-
-            setBackgroundColor(Color.TRANSPARENT)
-            setViewPortOffsets(0f, 0f, 0f, 0f)
+        binding.homeChallengesRv.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.homeChallengesRv.adapter = ChallengeCardAdapter(activeChallenges) { challenge ->
+            findNavController().navigate(R.id.action_home_to_challengeDetail)
         }
 
-        // Demo data - 7 days
-        val entries = listOf(
-            Entry(0f, 150f),
-            Entry(1f, 200f),
-            Entry(2f, 180f),
-            Entry(3f, 250f),
-            Entry(4f, 220f),
-            Entry(5f, 300f),
-            Entry(6f, 350f)
-        )
-
-        val primaryColor = ContextCompat.getColor(requireContext(), R.color.alea_primary_start)
-        val primaryEndColor = ContextCompat.getColor(requireContext(), R.color.alea_primary_end)
-
-        val dataSet = LineDataSet(entries, "Coins").apply {
-            mode = LineDataSet.Mode.CUBIC_BEZIER
-            cubicIntensity = 0.2f
-            setDrawFilled(true)
-            fillColor = primaryColor
-            fillAlpha = 50
-            color = primaryEndColor
-            lineWidth = 3f
-            setDrawCircles(false)
-            setDrawValues(false)
-            setDrawHighlightIndicators(false)
+        binding.homeSeeAllChallenges.setOnClickListener {
+            findNavController().navigate(R.id.action_home_to_challengesHistory)
         }
 
-        chart.data = LineData(dataSet)
-        chart.invalidate()
-        chart.animateX(1000)
-    }
+        // Quick Stats
+        val wins = MockDataProvider.challenges.count { it.status == ChallengeStatus.COMPLETED }
+        binding.homeStatWins.text = "$wins"
+        binding.homeStatStreak.text = "3 🔥"
+        binding.homeStatRank.text = "#4"
 
-    private fun setupClickListeners() {
-        binding.notificationButton.setOnClickListener {
+        // Recent Activity
+        binding.homeActivityRv.layoutManager = LinearLayoutManager(requireContext())
+        binding.homeActivityRv.adapter = ActivityAdapter(MockDataProvider.notifications.take(4))
+
+        // Notifications
+        binding.homeNotifications.setOnClickListener {
             findNavController().navigate(R.id.action_home_to_notifications)
-        }
-
-        binding.newChallengeAction.setOnClickListener {
-            findNavController().navigate(R.id.action_home_to_createChallenge)
-        }
-
-        binding.findFriendsAction.setOnClickListener {
-            findNavController().navigate(R.id.friendsFragment)
-        }
-
-        binding.leaderboardAction.setOnClickListener {
-            findNavController().navigate(R.id.rankingFragment)
-        }
-
-        binding.viewAllText.setOnClickListener {
-            findNavController().navigate(R.id.profileFragment)
-        }
-    }
-
-    private fun observeState() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.uiState.collect { state ->
-                // Show/hide loading
-                binding.balanceCard.visibility = if (state.isLoading) View.INVISIBLE else View.VISIBLE
-                binding.statsCard.visibility = if (state.isLoading) View.INVISIBLE else View.VISIBLE
-
-                state.user?.let { user ->
-                    binding.greetingText.text = getString(R.string.home_greeting, user.username)
-                    binding.coinsAmount.text = NumberFormat.getNumberInstance(Locale.US)
-                        .format(user.coins)
-
-                    val trend = if (user.wins > 0) "+${(user.winRate / 10).toInt()}%" else "0%"
-                    binding.trendBadge.text = trend
-
-                    // Level & XP
-                    binding.levelText.text = getString(R.string.home_level_format, user.level)
-                    binding.xpText.text = getString(R.string.home_xp_progress_format, user.xp, user.xpToNextLevel)
-                    binding.xpProgressBar.max = user.xpToNextLevel
-                    binding.xpProgressBar.progress = user.xp
-                }
-
-                challengesAdapter.submitList(state.challenges)
-
-                // Show weekly improvement
-                val weeklyGain = state.user?.let { "+${(it.coins * 0.12).toInt()}₳ esta semana" } ?: ""
-                binding.improvementText.text = weeklyGain
-            }
         }
     }
 

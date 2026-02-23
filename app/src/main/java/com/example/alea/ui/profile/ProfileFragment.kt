@@ -4,38 +4,23 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.alea.R
+import com.example.alea.data.MockDataProvider
+import com.example.alea.data.model.ChallengeStatus
 import com.example.alea.databinding.FragmentProfileBinding
-import com.example.alea.ui.components.PerformanceChartView
-import com.example.alea.ui.home.ChallengesAdapter
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
+import com.example.alea.ui.adapters.AchievementAdapter
 import java.text.NumberFormat
 import java.util.Locale
 
-@AndroidEntryPoint
 class ProfileFragment : Fragment() {
 
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: ProfileViewModel by viewModels()
-    private lateinit var achievementsAdapter: AchievementsAdapter
-    private lateinit var challengesAdapter: ChallengesAdapter
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -43,129 +28,48 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupAchievementsRecyclerView()
-        setupChallengesRecyclerView()
-        setupClickListeners()
-        setupFilterToggle()
-        setupPerformanceChart()
-        observeState()
-    }
+        val user = MockDataProvider.currentUser
+        val nf = NumberFormat.getNumberInstance(Locale("es", "ES"))
 
-    private fun setupAchievementsRecyclerView() {
-        achievementsAdapter = AchievementsAdapter()
-        binding.achievementsRecyclerView.apply {
-            adapter = achievementsAdapter
-            layoutManager = LinearLayoutManager(
-                requireContext(),
-                LinearLayoutManager.HORIZONTAL,
-                false
-            )
-        }
-    }
+        binding.profileName.text = user.name
+        binding.profileHandle.text = user.username
+        binding.profileLevel.text = getString(R.string.profile_level, user.level)
+        binding.profileBio.text = "\"${user.bio}\""
+        binding.profileMemberSince.text = getString(R.string.profile_member_since) + " · Enero 2024"
 
-    private fun setupChallengesRecyclerView() {
-        challengesAdapter = ChallengesAdapter { challenge ->
-            val action = ProfileFragmentDirections.actionProfileToChallengeDetail(challenge.id)
-            findNavController().navigate(action)
-        }
-        binding.challengesRecyclerView.apply {
-            adapter = challengesAdapter
-            layoutManager = LinearLayoutManager(
-                requireContext(),
-                LinearLayoutManager.HORIZONTAL,
-                false
-            )
-        }
-    }
+        binding.profileStatChallenges.text = "${user.totalChallenges}"
+        binding.profileStatFriends.text = "${MockDataProvider.friends.size}"
+        binding.profileStatCoins.text = nf.format(user.aleaCoins)
 
-    private fun setupPerformanceChart() {
-        // Set demo data for the weekly performance chart
-        val demoData = listOf(
-            PerformanceChartView.PerformanceData("Mon", 3, false),
-            PerformanceChartView.PerformanceData("Tue", 5, true),
-            PerformanceChartView.PerformanceData("Wed", 2, false),
-            PerformanceChartView.PerformanceData("Thu", 7, true),
-            PerformanceChartView.PerformanceData("Fri", 4, false),
-            PerformanceChartView.PerformanceData("Sat", 6, true),
-            PerformanceChartView.PerformanceData("Sun", 3, false)
-        )
-        binding.performanceChart.setData(demoData)
-        binding.performanceChart.animateChart()
-    }
+        binding.profileWeeklyPoints.text = "${user.weeklyPoints}"
 
-    private fun setupClickListeners() {
-        binding.settingsButton.setOnClickListener {
-            findNavController().navigate(R.id.action_profile_to_settings)
+        // Calculate win rate
+        val completed = MockDataProvider.challenges.count { it.status == ChallengeStatus.COMPLETED }
+        val total = MockDataProvider.challenges.size
+        val winRate = if (total > 0) (completed * 100 / total) else 0
+        binding.profileWinRate.text = "${winRate}%"
+
+        // Achievements horizontal list
+        binding.profileAchievementsRv.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.profileAchievementsRv.adapter = AchievementAdapter(MockDataProvider.unlockedAchievements.take(6), horizontalMode = true)
+
+        binding.profileSeeAllAchievements.setOnClickListener {
+            findNavController().navigate(R.id.action_profile_to_achievements)
         }
 
-        binding.editProfileButton.setOnClickListener {
-            showEditProfileDialog()
+        // Edit profile → editProfile (was incorrectly going to coinHistory)
+        binding.profileEditBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_profile_to_editProfile)
         }
-    }
 
-    private fun showEditProfileDialog() {
-        val currentUser = viewModel.uiState.value.user ?: return
-        val dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_edit_profile, null)
-        val usernameInput = dialogView.findViewById<EditText>(R.id.usernameInput)
-        val displayNameInput = dialogView.findViewById<EditText>(R.id.displayNameInput)
-
-        usernameInput.setText(currentUser.username)
-        displayNameInput.setText(currentUser.displayName)
-
-        MaterialAlertDialogBuilder(requireContext())
-            .setTitle(getString(R.string.profile_edit))
-            .setView(dialogView)
-            .setPositiveButton(getString(R.string.save)) { _, _ ->
-                val newUsername = usernameInput.text.toString().trim()
-                val newDisplayName = displayNameInput.text.toString().trim()
-                if (newUsername.isNotEmpty()) {
-                    viewModel.updateProfile(newUsername, newDisplayName)
-                }
-            }
-            .setNegativeButton(getString(R.string.cancel), null)
-            .show()
-    }
-
-    private fun setupFilterToggle() {
-        binding.filterToggle.addOnButtonCheckedListener { _, checkedId, isChecked ->
-            if (isChecked) {
-                viewModel.toggleFilter(checkedId == R.id.completedButton)
-            }
+        // Quick actions
+        binding.profileActionChallenges.setOnClickListener {
+            findNavController().navigate(R.id.action_profile_to_challengesHistory)
         }
-    }
 
-    private fun observeState() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.uiState.collect { state ->
-                state.user?.let { user ->
-                    // Name and handle
-                    binding.userName.text = user.displayName.ifEmpty { user.username }
-                    binding.userHandle.text = getString(R.string.profile_handle_format, user.username.lowercase())
-
-                    // Level and title badge
-                    binding.levelBadge.text = getString(R.string.profile_level_format, user.level, user.title)
-
-                    // Stats
-                    binding.totalCoinsValue.text = formatNumber(user.coins)
-                    binding.totalChallengesValue.text = user.totalChallenges.toString()
-                    binding.winRateValue.text = getString(R.string.profile_percentage_format, user.winRate.toInt())
-                    binding.rankValue.text = getString(R.string.profile_rank_format, user.rank)
-                }
-
-                // Update achievements
-                achievementsAdapter.submitList(state.unlockedAchievements)
-
-                // Update filtered challenges
-                val filtered = viewModel.filteredChallenges
-                challengesAdapter.submitList(filtered)
-                binding.challengesRecyclerView.isVisible = filtered.isNotEmpty()
-                binding.challengesEmptyText.isVisible = filtered.isEmpty()
-            }
+        binding.profileActionCoins.setOnClickListener {
+            findNavController().navigate(R.id.action_profile_to_coinHistory)
         }
-    }
-
-    private fun formatNumber(number: Long): String {
-        return NumberFormat.getNumberInstance(Locale.US).format(number)
     }
 
     override fun onDestroyView() {

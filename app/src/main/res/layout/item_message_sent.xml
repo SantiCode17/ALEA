@@ -1,35 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="@dimen/spacing_sm"
-    android:paddingStart="@dimen/spacing_xxl">
+    android:layout_marginVertical="3dp">
 
-    <TextView
-        android:id="@+id/messageText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bg_chat_bubble_sent"
-        android:maxWidth="@dimen/chat_bubble_max_width"
-        android:padding="@dimen/spacing_md"
-        android:textColor="@color/alea_text_primary"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_max="wrap"
-        tools:text="Hey! Are you ready for the challenge?" />
-
-    <TextView
-        android:id="@+id/timestampText"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_xs"
-        android:textColor="@color/alea_text_tertiary"
-        android:textSize="10sp"
-        app:layout_constraintEnd_toEndOf="@id/messageText"
-        app:layout_constraintTop_toBottomOf="@id/messageText"
-        tools:text="10:30 AM" />
+        android:layout_gravity="end"
+        android:maxWidth="280dp"
+        android:background="@drawable/shape_bubble_sent"
+        android:orientation="vertical"
+        android:paddingHorizontal="14dp"
+        android:paddingVertical="10dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/message_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins"
+            android:textColor="@color/white"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/message_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/poppins"
+            android:textColor="@color/white_70"
+            android:textSize="10sp"/>
+    </LinearLayout>
+</FrameLayout>

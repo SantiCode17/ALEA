@@ -1,258 +1,322 @@
 <resources>
     <string name="app_name">ALEA</string>
+    <string name="alea_subtitle">Apuestas Amistosas.</string>
 
     <!-- Onboarding -->
-    <string name="onboarding_title">ALEA</string>
-    <string name="onboarding_subtitle">Compite. Desafía. Conquista.</string>
-    <string name="onboarding_get_started">Comenzar</string>
+    <string name="onboarding_title_1">Bienvenido a ALEA</string>
+    <string name="onboarding_desc_1">El árbitro social de tus retos.\nDesafía a tus amigos y demuestra quién es el mejor.</string>
+    <string name="onboarding_title_2">Crea Retos Épicos</string>
+    <string name="onboarding_desc_2">Pon a prueba a tus amigos en habilidad, resistencia o humor. Apuesta Alea Coins y gana reputación.</string>
+    <string name="onboarding_title_3">Sube al Ranking</string>
+    <string name="onboarding_desc_3">Compite globalmente, colecciona logros y domina el leaderboard semanal e histórico.</string>
+    <string name="onboarding_start">¡Empezar!</string>
+    <string name="onboarding_next">Siguiente →</string>
+    <string name="onboarding_skip">Omitir</string>
 
-    <!-- Login -->
-    <string name="login_title">¡Hola de nuevo!</string>
-    <string name="login_subtitle">Bienvenido de vuelta a ALEA</string>
-    <string name="login_email_hint">Correo electrónico</string>
+    <!-- Auth -->
+    <string name="login_welcome">Welcome Back!</string>
+    <string name="login_subtitle">Te hemos echado de menos</string>
+    <string name="login_username_hint">\@username</string>
     <string name="login_password_hint">Contraseña</string>
-    <string name="login_sign_in">Iniciar Sesión</string>
-    <string name="login_or_continue">o continúa con</string>
-    <string name="login_no_account">¿No tienes cuenta? <b>Regístrate</b></string>
     <string name="login_forgot_password">¿Olvidaste tu contraseña?</string>
+    <string name="login_button">Iniciar Sesión</string>
+    <string name="login_or">— O continúa con —</string>
+    <string name="login_no_account">¿No tienes cuenta?</string>
+    <string name="login_register">Regístrate aquí</string>
+    <string name="login_error">Usuario o contraseña incorrectos</string>
+    <string name="login_error_empty_user">Introduce tu nombre de usuario</string>
+    <string name="login_error_empty_pass">Introduce tu contraseña</string>
+    <string name="login_error_pass_short">La contraseña debe tener al menos 4 caracteres</string>
+    <string name="login_error_not_registered">Este usuario no está registrado</string>
+    <string name="login_error_wrong_pass">Contraseña incorrecta</string>
+    <string name="register_error_empty_name">Introduce tu nombre completo</string>
+    <string name="register_error_empty_user">Introduce un nombre de usuario</string>
+    <string name="register_error_empty_email">Introduce tu email</string>
+    <string name="register_error_invalid_email">El email no es válido</string>
+    <string name="register_error_empty_pass">Introduce una contraseña</string>
+    <string name="register_error_pass_short">La contraseña debe tener al menos 6 caracteres</string>
+    <string name="register_error_user_taken">Este nombre de usuario ya está en uso</string>
 
-    <!-- Register -->
-    <string name="register_title">Crear Cuenta</string>
-    <string name="register_subtitle">Únete a la comunidad ALEA</string>
-    <string name="register_username_hint">Nombre de usuario</string>
-    <string name="register_confirm_password_hint">Confirmar contraseña</string>
-    <string name="register_sign_up">Registrarse</string>
-    <string name="register_have_account">¿Ya tienes cuenta? <b>Inicia Sesión</b></string>
+    <string name="register_title">Get Started Free</string>
+    <string name="register_subtitle">Gratis para siempre. Sin tarjeta de crédito.</string>
+    <string name="register_email_hint">tucorreo@gmail.com</string>
+    <string name="register_name_hint">Tu nombre completo</string>
+    <string name="register_username_hint">\@tusername</string>
+    <string name="register_password_hint">Mínimo 8 caracteres</string>
+    <string name="register_button">Crear Cuenta</string>
+    <string name="register_has_account">¿Ya tienes cuenta?</string>
+    <string name="register_login">Inicia sesión</string>
+    <string name="register_strength_weak">Débil</string>
+    <string name="register_strength_medium">Media</string>
+    <string name="register_strength_strong">Fuerte</string>
+
+    <string name="forgot_title">Recuperar Contraseña</string>
+    <string name="forgot_subtitle">Introduce tu email y te enviaremos un enlace para restablecer tu contraseña.</string>
+    <string name="forgot_email_hint">tucorreo@gmail.com</string>
+    <string name="forgot_button">Enviar Enlace</string>
+    <string name="forgot_send">Enviar Enlace</string>
+    <string name="forgot_sent_title">¡Revisa tu email!</string>
+    <string name="forgot_sent_desc">Hemos enviado un enlace a %s</string>
+    <string name="forgot_back">Volver al Inicio de Sesión</string>
 
     <!-- Home -->
-    <string name="home_greeting">¡Hola, %s!</string>
-    <string name="home_alea_coins">Monedas Alea</string>
-    <string name="home_last_victory">Última Victoria</string>
-    <string name="home_recent_challenges">Retos Recientes</string>
-    <string name="home_quick_actions">Acciones Rápidas</string>
-    <string name="home_view_all">Ver Todo</string>
-
-    <!-- Navigation -->
-    <string name="nav_home">Inicio</string>
-    <string name="nav_ranking">Ranking</string>
-    <string name="nav_create">Crear</string>
-    <string name="nav_friends">Amigos</string>
-    <string name="nav_profile">Perfil</string>
-    <string name="nav_new_challenge">Nuevo Reto</string>
-
-    <!-- Ranking -->
-    <string name="ranking_title">Ranking</string>
-    <string name="ranking_weekly">Semanal</string>
-    <string name="ranking_all_time">Histórico</string>
-    <string name="ranking_points">pts</string>
-    <string name="ranking_your_position">Tu posición</string>
-    <string name="ranking_top_players">Mejores Jugadores</string>
-
-    <!-- Create Challenge -->
-    <string name="create_title">Crear Reto</string>
-    <string name="create_challenge_title_hint">Apuesto a que no puedes…</string>
-    <string name="create_description_hint">Descripción</string>
-    <string name="create_choose_opponent">Elegir Oponente</string>
-    <string name="create_search_friends">Buscar amigos…</string>
-    <string name="create_challenge_details">Detalles del Reto</string>
-    <string name="create_bet_amount">Cantidad de Apuesta</string>
-    <string name="create_deadline">Fecha límite</string>
-    <string name="create_swipe_to_create">Desliza para Crear</string>
-    <string name="create_release_to_confirm">¡Suelta para Confirmar!</string>
-    <string name="create_next">Siguiente</string>
-    <string name="create_back">Atrás</string>
-    <string name="create_success">¡Reto creado!</string>
-    <string name="create_stake_format">%1$d ₳</string>
-    <string name="create_category_label">Elige Categoría</string>
-    <string name="create_difficulty_label">Selecciona Dificultad</string>
-    <string name="create_stake_label">Establece la Apuesta</string>
-    <string name="create_button">Crear Reto</string>
-    <string name="create_loading">Creando…</string>
-    <string name="create_summary_title">Resumen del Reto</string>
-
-    <!-- Friends -->
-    <string name="friends_title">Amigos</string>
-    <string name="friends_add">Añadir Amigo</string>
-    <string name="friends_search_hint">Buscar amigos…</string>
-    <string name="friends_online">En línea</string>
-    <string name="friends_offline">Desconectado</string>
-    <string name="friends_no_friends">Aún no tienes amigos</string>
-    <string name="friends_add_some">¡Añade amigos para empezar a competir!</string>
-
-    <!-- Add Friend -->
-    <string name="add_friend_title">Añadir Amigo</string>
-    <string name="add_friend_search_hint">Buscar por nombre o correo…</string>
-    <string name="add_friend_add">Añadir</string>
-    <string name="add_friend_added">¡Solicitud de amistad enviada!</string>
-    <string name="add_friend_close">Cerrar</string>
-
-    <!-- Chat -->
-    <string name="chat_message_hint">Escribe un mensaje…</string>
-    <string name="chat_send">Enviar</string>
-
-    <!-- Profile -->
-    <string name="profile_title">Perfil</string>
-    <string name="profile_edit">Editar Perfil</string>
-    <string name="profile_completed">Completados</string>
-    <string name="profile_incomplete">Pendientes</string>
-    <string name="profile_total_coins">Monedas</string>
-    <string name="profile_total_challenges">Retos</string>
-    <string name="profile_win_rate">Victorias</string>
-    <string name="profile_rank">Puesto</string>
-    <string name="profile_weekly_performance">Rendimiento Semanal</string>
-    <string name="profile_wins">Victorias</string>
-    <string name="profile_losses">Derrotas</string>
-    <string name="profile_handle_format">\@%1$s</string>
-    <string name="profile_percentage_format">%1$d%%</string>
-    <string name="profile_rank_format">#%1$d</string>
-    <string name="profile_level_format">🏆 Nivel %1$d • %2$s</string>
-    <string name="profile_achievements">Logros</string>
-    <string name="profile_recent_challenges">Retos Recientes</string>
-    <string name="profile_display_name_hint">Nombre para mostrar</string>
-    <string name="profile_no_challenges_filter">No tienes retos en esta categoría</string>
-
-    <!-- Settings -->
-    <string name="settings_title">Ajustes</string>
-    <string name="settings_account">Cuenta</string>
-    <string name="settings_email">Correo</string>
-    <string name="settings_change_password">Cambiar Contraseña</string>
-    <string name="settings_logout">Cerrar Sesión</string>
-    <string name="settings_appearance">Apariencia</string>
-    <string name="settings_theme_color">Color del Tema</string>
-    <string name="settings_dark_mode">Modo Oscuro</string>
-    <string name="settings_security">Seguridad</string>
-    <string name="settings_two_factor">Autenticación de Dos Factores</string>
-    <string name="settings_privacy">Privacidad</string>
-    <string name="settings_about">Acerca de</string>
-    <string name="settings_version">Versión</string>
-    <string name="settings_terms">Términos y Condiciones</string>
-
-    <!-- Challenge Status -->
-    <string name="status_active">Activo</string>
-    <string name="status_won">Ganado</string>
-    <string name="status_lost">Perdido</string>
-    <string name="status_pending">Pendiente</string>
-    <string name="status_completed">Completado</string>
-    <string name="status_cancelled">Cancelado</string>
-
-    <!-- Challenge Detail -->
-    <string name="challenge_no_description">Sin descripción</string>
-    <string name="challenge_open">Reto Abierto</string>
-    <string name="challenge_action_success">¡Acción completada!</string>
-    <string name="challenge_accept">Aceptar</string>
-    <string name="challenge_decline">Rechazar</string>
-    <string name="challenge_complete">Marcar Completado</string>
-    <string name="challenge_category">Categoría</string>
-    <string name="challenge_difficulty">Dificultad</string>
-    <string name="challenge_deadline">Fecha Límite</string>
-    <string name="challenge_participants">Participantes</string>
-    <string name="challenge_vs">VS</string>
-
-    <!-- General -->
-    <string name="error_generic">Algo salió mal. Inténtalo de nuevo.</string>
-    <string name="error_network">Sin conexión a internet.</string>
-    <string name="error_invalid_email">Introduce un correo electrónico válido</string>
-    <string name="error_short_password">La contraseña debe tener al menos 6 caracteres</string>
-    <string name="error_short_username">El nombre de usuario debe tener al menos 3 caracteres</string>
-    <string name="error_passwords_mismatch">Las contraseñas no coinciden</string>
-    <string name="loading">Cargando…</string>
-    <string name="retry">Reintentar</string>
-    <string name="cancel">Cancelar</string>
-    <string name="save">Guardar</string>
-    <string name="delete">Eliminar</string>
-    <string name="confirm">Confirmar</string>
-
-    <!-- Success / Victory -->
-    <string name="dialog_success_title">¡Reto Creado!</string>
-    <string name="dialog_success_message">Tu reto ha sido enviado a tus oponentes. ¡Buena suerte!</string>
-    <string name="dialog_view_challenge">Ver Reto</string>
-    <string name="dialog_done">Hecho</string>
-    <string name="victory_title">🎉 ¡Victoria!</string>
-    <string name="victory_subtitle">¡Has completado el reto!</string>
-    <string name="victory_coins_earned">Monedas Ganadas</string>
-    <string name="victory_xp_earned">XP Ganada</string>
-    <string name="victory_go_home">Volver al Inicio</string>
-    <string name="victory_share">Compartir</string>
-    <string name="victory_share_text">🎉 ¡Acabo de crear un reto en ALEA! ¿Te atreves a aceptarlo?</string>
-
-    <!-- Content descriptions -->
-    <string name="cd_avatar">Avatar del usuario</string>
-    <string name="cd_notification">Notificaciones</string>
-    <string name="cd_back">Volver</string>
-    <string name="cd_settings">Ajustes</string>
-    <string name="cd_send_message">Enviar mensaje</string>
-    <string name="cd_add_friend">Añadir amigo</string>
-    <string name="cd_create_challenge">Crear reto</string>
+    <string name="home_greeting">Hello Santi,</string>
+    <string name="home_welcome">Welcome!!</string>
+    <string name="home_balance">13,450.00</string>
+    <string name="home_balance_label">Saldo total de Alea Coins</string>
+    <string name="home_trend">▲ +15%</string>
+    <string name="home_last_victory">Last victory</string>
+    <string name="home_last_victory_amount">★ 250.00</string>
+    <string name="home_last_challenges">Last challenges</string>
+    <string name="home_view_all">ver todos →</string>
+    <string name="home_weekly_badge">🏆 Esta semana</string>
+    <string name="home_weekly_title">Weekly\nChallenge</string>
+    <string name="home_weekly_desc">¡Consigue 500 Alea Coins!</string>
 
     <!-- Notifications -->
     <string name="notifications_title">Notificaciones</string>
-    <string name="notifications_mark_all_read">Marcar todo como leído</string>
-    <string name="notifications_empty_title">No hay notificaciones</string>
-    <string name="notifications_empty_subtitle">Aquí verás las novedades sobre tus retos</string>
-    <string name="notifications_dismiss">Descartar</string>
+    <string name="notif_accept">Aceptar</string>
+    <string name="notif_reject">Rechazar</string>
 
-    <!-- Onboarding Features -->
-    <string name="onboarding_feature_challenges">Retos</string>
-    <string name="onboarding_feature_rewards">Recompensas</string>
-    <string name="onboarding_feature_friends">Amigos</string>
+    <!-- Ranking -->
+    <string name="ranking_title">Rankings</string>
+    <string name="ranking_weekly">Weekly</string>
+    <string name="ranking_alltime">All Time</string>
+    <string name="ranking_better_than">You are doing better than</string>
+    <string name="ranking_percent">60% of other players!</string>
+    <string name="ranking_time_left">06d 23h 00m</string>
 
-    <!-- Relative Time -->
-    <string name="time_just_now">Ahora mismo</string>
-    <string name="time_minutes_ago">Hace %1$dm</string>
-    <string name="time_hours_ago">Hace %1$dh</string>
-    <string name="time_days_ago">Hace %1$dd</string>
-    <string name="time_weeks_ago">Hace %1$dsem</string>
+    <!-- Friends -->
+    <string name="friends_title">Friends</string>
+    <string name="friends_search_hint">Buscar amigos…</string>
+    <string name="friends_pending">%d solicitudes pendientes</string>
+    <string name="friends_view_all">Ver todas</string>
+    <string name="friends_chip_all">Todos</string>
+    <string name="friends_chip_online">Online</string>
+    <string name="friends_chip_challenges">Con retos activos</string>
 
-    <!-- Categories -->
-    <string name="category_fitness">💪 Fitness</string>
-    <string name="category_study">📚 Estudio</string>
-    <string name="category_gaming">🎮 Gaming</string>
-    <string name="category_creativity">🎨 Creatividad</string>
-    <string name="category_social">🤝 Social</string>
-    <string name="category_lifestyle">🌟 Estilo de vida</string>
-    <string name="category_adventure">🏔️ Aventura</string>
-    <string name="category_other">🎯 Otro</string>
+    <!-- Add Friend -->
+    <string name="add_friend_title">Añadir Amigo</string>
+    <string name="add_friend_search_hint">Buscar por nombre o \@username…</string>
+    <string name="add_friend_contacts">Contactos existentes en ALEA</string>
+    <string name="add_friend_add">+ Añadir</string>
+    <string name="add_friend_sent">Enviado ✓</string>
+    <string name="add_friend_suggestions">Sugerencias ALEA</string>
 
-    <!-- Difficulty -->
-    <string name="difficulty_easy">Fácil</string>
-    <string name="difficulty_medium">Medio</string>
-    <string name="difficulty_hard">Difícil</string>
-    <string name="difficulty_extreme">Extremo</string>
+    <!-- Chat -->
+    <string name="chat_hint">Escribe un mensaje…</string>
 
-    <!-- Balance Card -->
-    <string name="home_level_format">Nivel %1$d</string>
-    <string name="home_xp_progress_format">%1$d / %2$d XP</string>
+    <!-- Challenge Detail -->
+    <string name="challenge_detail_title">Detalle del Reto</string>
+    <string name="challenge_active_badge">⚡ Reto Activo</string>
+    <string name="challenge_accept">✓ Aceptar Reto</string>
+    <string name="challenge_reject">✗ Rechazar</string>
+    <string name="challenge_complete">✓ Marcar como Completado</string>
+    <string name="challenge_extend">Solicitar Prórroga</string>
+    <string name="challenge_mascot_msg">¡Tú puedes con esto!</string>
 
-    <!-- Empty States -->
-    <string name="home_no_challenges">Sin retos activos</string>
-    <string name="home_start_challenge">¡Crea tu primer reto!</string>
+    <!-- Create Challenge -->
+    <string name="create_type_title">¿Qué tipo de reto quieres crear?</string>
+    <string name="create_step1_subtitle">Ponle un título a tu reto</string>
+    <string name="create_title_hint">Ej: Haz 30 flexiones sin parar</string>
+    <string name="create_desc_hint">Describe el reto con más detalle…</string>
+    <string name="create_friends_title">Desafía a tus amigos</string>
+    <string name="create_friends_desc">Envía el reto a uno o más amigos para competir.</string>
+    <string name="create_add_date">Añadir fecha</string>
+    <string name="create_add_task">Add Task</string>
+    <string name="create_select_rivals">Selecciona a tus rivales</string>
+    <string name="create_selected">%d seleccionados</string>
+    <string name="create_choose_date">Choose the date</string>
+    <string name="create_bet_label">Alea Coins a apostar</string>
+    <string name="create_balance_ref">Tu saldo: 13,450 ★</string>
+    <string name="create_confirm_title">¡Todo listo! Desliza para confirmar</string>
+    <string name="create_swipe_label">Desliza para añadir →</string>
+    <string name="create_success">¡Reto creado! 🎉</string>
+    <string name="create_snackbar">✓ Reto enviado a Nuria Rodríguez</string>
 
-    <!-- Quick Actions -->
-    <string name="action_new_challenge">Nuevo Reto</string>
-    <string name="action_find_friends">Buscar Amigos</string>
-    <string name="action_view_ranking">Ver Ranking</string>
+    <!-- Wizard Categories -->
+    <string name="cat_sport">Deporte</string>
+    <string name="cat_skill">Habilidad</string>
+    <string name="cat_study">Estudio</string>
+    <string name="cat_humor">Humor</string>
+    <string name="cat_endurance">Resistencia</string>
+    <string name="cat_custom">Personalizado</string>
 
-    <!-- Challenge Wizard Step 1 -->
-    <string name="create_step1_title">¿Cuál es tu reto?</string>
-    <string name="create_step1_hint">Título del Reto</string>
-    <string name="create_choose_category">Elige Categoría</string>
-    <string name="create_select_difficulty">Selecciona Dificultad</string>
-    <string name="create_set_stake">Establece la Apuesta</string>
-    <string name="chip_fitness">💪 Fitness</string>
-    <string name="chip_gaming">🎮 Gaming</string>
-    <string name="chip_creativity">🎨 Creatividad</string>
-    <string name="chip_cooking">🍳 Cocina</string>
-    <string name="chip_study">📚 Estudio</string>
-    <string name="chip_music">🎵 Música</string>
-    <string name="chip_sports">⚽ Deportes</string>
-    <string name="chip_other">🎯 Otro</string>
-    <string name="chip_easy">Fácil (1x)</string>
-    <string name="chip_medium">Medio (2x)</string>
-    <string name="chip_hard">Difícil (3x)</string>
-    <string name="chip_extreme">Extremo (5x)</string>
+    <!-- Weekly Challenge -->
+    <string name="weekly_title">Reto Semanal</string>
+    <string name="weekly_banner_title">🏆 Reto de la Semana</string>
+    <string name="weekly_banner_desc">¡Quien más retos complete esta semana se lleva 500 Alea Coins extra!</string>
+    <string name="weekly_countdown">Termina en: 6d 23h 00m</string>
+    <string name="weekly_progress">Tú: 6/10 retos</string>
 
-    <!-- Challenge Wizard Step 3 -->
-    <string name="create_step3_title">Últimos Detalles</string>
-    <string name="create_final_bet">Apuesta Final</string>
-    <string name="create_select_deadline">Selecciona Fecha Límite</string>
+    <!-- Challenges History -->
+    <string name="history_title">Todos mis Retos</string>
+    <string name="history_header">Todos tus retos</string>
+
+    <!-- Coin History -->
+    <string name="coin_history_title">Historial de Monedas</string>
+    <string name="coin_balance_label">Saldo Actual</string>
+    <string name="coin_balance">★ 13,450</string>
+    <string name="coin_trend">▲ +15% esta semana</string>
+
+    <!-- Weekly Stats -->
+    <string name="weekly_stats_title">Estadísticas Semanales</string>
+
+    <!-- Profile -->
+    <string name="profile_hi">Hi,</string>
+    <string name="profile_name">Santiago!</string>
+    <string name="profile_subtitle">Ready to face these challenges?</string>
+    <string name="profile_completed">Completed</string>
+    <string name="profile_incompleted">Incompleted</string>
+    <string name="profile_active_badge">ACTIVE</string>
+    <string name="profile_achievements_title">Tus Logros</string>
+    <string name="profile_achievements_count">12 de 30 desbloqueados</string>
+    <string name="profile_nearby_coins">1550 ★</string>
+    <string name="profile_nearby_label">This week · +5%</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_edit_profile">Edit profile</string>
+    <string name="settings_security">Security</string>
+    <string name="settings_notifications">Notifications</string>
+    <string name="settings_privacy">Privacy</string>
+    <string name="settings_subscription">My Subscription</string>
+    <string name="settings_help">Help &amp; Support</string>
+    <string name="settings_terms">Terms and Policies</string>
+    <string name="settings_free_space">Free up space</string>
+    <string name="settings_data_saver">Data Saver</string>
+    <string name="settings_report">Report a problem</string>
+    <string name="settings_add_account">Add account</string>
+    <string name="settings_theme">Change Theme</string>
+    <string name="settings_logout">Cerrar Sesión</string>
+
+    <!-- Edit Profile -->
+    <string name="edit_profile_title">Editar Perfil</string>
+    <string name="edit_profile_save">Guardar</string>
+    <string name="edit_profile_change_photo">Cambiar foto</string>
+
+    <!-- Security -->
+    <string name="security_title">Seguridad</string>
+    <string name="security_change_pass">Cambiar contraseña</string>
+    <string name="security_2fa">Autenticación de dos factores</string>
+    <string name="security_sessions">Sesiones activas</string>
+    <string name="security_delete">Eliminar cuenta</string>
+
+    <!-- Achievements -->
+    <string name="achievements_title">Logros</string>
+    <string name="achievements_header">Tus Logros</string>
+    <string name="achievements_progress">12 / 30 desbloqueados</string>
+
+    <!-- Theme Picker -->
+    <string name="theme_title">Cambiar Tema</string>
+    <string name="theme_grid">Grid</string>
+    <string name="theme_spectrum">Spectrum</string>
+    <string name="theme_sliders">Sliders</string>
+    <string name="theme_apply">Aplicar Tema</string>
+    <string name="theme_cancel">Cancelar</string>
+
+    <!-- Friend Profile -->
+    <string name="friend_send_message">💬 Enviar Mensaje</string>
+    <string name="friend_challenge">⚡ Retar</string>
+    <string name="friend_stats" formatted="false">%d Amigos | %d Retos | %d Victorias</string>
+
+    <!-- User Rank Detail -->
+    <string name="rank_detail_challenge">⚡ Retar a este usuario</string>
+    <string name="rank_detail_weekly_pts">Puntos Semanales</string>
+    <string name="rank_detail_coins">Alea Coins</string>
+    <string name="rank_detail_won">Retos Ganados</string>
+    <string name="rank_detail_streaks">Rachas Activas</string>
+
+    <!-- Empty state -->
+    <string name="empty_challenges_title">No hay nada todavía</string>
+    <string name="empty_challenges_desc">Parece que no tienes nada en tu lista de retos. ¡Añade algo divertido!</string>
+    <string name="empty_got_it">Got it</string>
+
+    <!-- Explore categories -->
+    <string name="chip_all">All Challenges</string>
+    <string name="chip_skill">Habilidad</string>
+    <string name="chip_endurance">Resistencia</string>
+    <string name="chip_humor">Humor</string>
+    <string name="chip_study">Estudio</string>
+    <string name="chip_sport">Deporte</string>
+
+    <!-- Additional missing strings -->
+    <string name="home_coins_label">Alea Coins</string>
+    <string name="home_active_challenges">Retos Activos</string>
+    <string name="home_see_all">Ver todos</string>
+    <string name="home_quick_stats">Estadísticas Rápidas</string>
+    <string name="home_stat_wins">Victorias</string>
+    <string name="home_stat_streak">Racha</string>
+    <string name="home_stat_rank">Ranking</string>
+    <string name="home_recent_activity">Actividad Reciente</string>
+
+    <string name="friends_tab_all">Amigos</string>
+    <string name="friends_tab_requests">Solicitudes</string>
+
+    <string name="notifications_mark_all">Marcar todo leído</string>
+
+    <string name="chat_online">En línea</string>
+    <string name="chat_input_hint">Escribe un mensaje…</string>
+
+    <string name="challenge_detail_bet">Apuesta</string>
+    <string name="challenge_detail_time">Tiempo</string>
+    <string name="challenge_detail_status">Estado</string>
+    <string name="challenge_detail_participants">Participantes</string>
+    <string name="challenge_detail_complete">Completar Reto</string>
+
+    <string name="coins_title">Alea Coins</string>
+    <string name="coins_balance">Saldo Actual</string>
+    <string name="coins_transactions">Transacciones</string>
+
+    <string name="profile_challenges">Retos</string>
+    <string name="profile_friends">Amigos</string>
+    <string name="profile_coins">Monedas</string>
+    <string name="profile_achievements">Logros</string>
+    <string name="profile_edit">Editar Perfil</string>
+    <string name="profile_level">Nivel %d</string>
+    <string name="profile_bio_label">Bio</string>
+    <string name="profile_weekly_points">Puntos semanales</string>
+    <string name="profile_win_rate">Tasa de victoria</string>
+    <string name="profile_member_since">Miembro desde</string>
+    <string name="profile_see_challenges">Ver todos los retos</string>
+    <string name="profile_see_coins">Historial de monedas</string>
+
+    <string name="create_challenge_title">Crear Reto</string>
+    <string name="create_challenge_type">Tipo de Reto</string>
+    <string name="create_type_dare">Reto</string>
+    <string name="create_type_bet">Apuesta</string>
+    <string name="create_type_vote">Votación</string>
+    <string name="create_challenge_name_label">Nombre del Reto</string>
+    <string name="create_challenge_name_hint">Ej: Haz 30 flexiones sin parar</string>
+    <string name="create_challenge_desc_label">Descripción</string>
+    <string name="create_challenge_desc_hint">Describe el reto con más detalle…</string>
+    <string name="create_challenge_bet_label">Apuesta (Alea Coins)</string>
+    <string name="create_challenge_bet_hint">100</string>
+    <string name="create_challenge_button">Crear Reto 🎯</string>
+
+    <string name="edit_profile_name">Nombre</string>
+    <string name="edit_profile_username">Nombre de usuario</string>
+    <string name="edit_profile_bio">Biografía</string>
+
+    <string name="settings_account">Cuenta</string>
+    <string name="settings_appearance">Apariencia</string>
+    <string name="settings_about">Acerca de</string>
+    <string name="settings_language">Idioma</string>
+    <string name="settings_version_value">ALEA v1.0.0</string>
+
+    <string name="add_friend_button">Añadir</string>
+    <string name="weekly_stats">Estadísticas Semanales</string>
+
+    <!-- Create Steps -->
+    <string name="create_step0_title">¿Qué tipo de reto?</string>
+    <string name="create_step1_title">Ponle nombre</string>
+    <string name="create_step2_title">Elige rivales</string>
+    <string name="create_step3_title">Apuesta</string>
+    <string name="create_step4_title">Confirmar</string>
+    <string name="create_next">Siguiente</string>
+    <string name="create_confirm_swipe">Desliza para crear ⚡</string>
+    <string name="create_confirmed">¡Reto creado con éxito! 🎉</string>
+    <string name="create_select_rivals_hint">Selecciona al menos un rival</string>
+    <string name="create_bet_amount_hint">Cantidad de Alea Coins</string>
+    <string name="create_bet_your_balance">Tu saldo: %d ★</string>
 </resources>

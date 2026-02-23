@@ -1,34 +1,29 @@
 package com.example.alea.ui.friends
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
-import androidx.core.widget.doAfterTextChanged
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.alea.R
+import com.example.alea.data.MockDataProvider
+import com.example.alea.data.model.Friend
 import com.example.alea.databinding.FragmentFriendsBinding
-import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
+import com.example.alea.ui.adapters.FriendAdapter
 
-@AndroidEntryPoint
 class FriendsFragment : Fragment() {
 
     private var _binding: FragmentFriendsBinding? = null
     private val binding get() = _binding!!
+    private var showingAll = true
+    private var currentQuery = ""
 
-    private val viewModel: FriendsViewModel by viewModels()
-    private lateinit var friendsAdapter: FriendsAdapter
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentFriendsBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -36,53 +31,76 @@ class FriendsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupRecyclerView()
-        setupSearch()
-        setupClickListeners()
-        observeState()
-    }
+        binding.friendsRv.layoutManager = LinearLayoutManager(requireContext())
+        loadFriends()
 
-    private fun setupRecyclerView() {
-        friendsAdapter = FriendsAdapter(
-            onFriendClick = { friendship ->
-                // Navigate to chat
-                val action = FriendsFragmentDirections.actionFriendsToChat(
-                    friendId = friendship.friendId,
-                    friendName = friendship.friendName
-                )
-                findNavController().navigate(action)
-            },
-            onMessageClick = { friendship ->
-                // Navigate to chat
-                val action = FriendsFragmentDirections.actionFriendsToChat(
-                    friendId = friendship.friendId,
-                    friendName = friendship.friendName
-                )
-                findNavController().navigate(action)
-            }
-        )
-        binding.friendsRecyclerView.adapter = friendsAdapter
-    }
-
-    private fun setupSearch() {
-        binding.searchEditText.doAfterTextChanged { text ->
-            viewModel.searchUsers(text.toString())
+        binding.friendsTabAll.setOnClickListener {
+            showingAll = true
+            updateTabs()
+            loadFriends()
         }
-    }
 
-    private fun setupClickListeners() {
-        binding.addFriendButton.setOnClickListener {
+        binding.friendsTabRequests.setOnClickListener {
+            showingAll = false
+            updateTabs()
+            loadFriends()
+        }
+
+        binding.friendsAddBtn.setOnClickListener {
             findNavController().navigate(R.id.action_friends_to_addFriend)
         }
+
+        binding.friendsSearchBtn.setOnClickListener {
+            val isVisible = binding.friendsSearchInput.visibility == View.VISIBLE
+            binding.friendsSearchInput.visibility = if (isVisible) View.GONE else View.VISIBLE
+            if (!isVisible) {
+                binding.friendsSearchInput.requestFocus()
+            } else {
+                binding.friendsSearchInput.text?.clear()
+                currentQuery = ""
+                loadFriends()
+            }
+        }
+
+        // Search filter
+        binding.friendsSearchInput.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                currentQuery = s?.toString()?.trim() ?: ""
+                loadFriends()
+            }
+            override fun afterTextChanged(s: Editable?) {}
+        })
     }
 
-    private fun observeState() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.uiState.collect { state ->
-                friendsAdapter.submitList(state.friends)
-                binding.emptyState.isVisible = state.friends.isEmpty() && !state.isLoading
-                binding.friendsRecyclerView.isVisible = state.friends.isNotEmpty()
+    private fun loadFriends() {
+        var list = if (showingAll) MockDataProvider.friends else MockDataProvider.friends.take(2)
+        if (currentQuery.isNotEmpty()) {
+            list = list.filter {
+                it.name.contains(currentQuery, ignoreCase = true) ||
+                it.username.contains(currentQuery, ignoreCase = true)
             }
+        }
+        binding.friendsRv.adapter = FriendAdapter(list,
+            onChatClick = { findNavController().navigate(R.id.action_friends_to_chat) },
+            onItemClick = { findNavController().navigate(R.id.action_friends_to_friendProfile) }
+        )
+    }
+
+    private fun updateTabs() {
+        val activeColor = ContextCompat.getColor(requireContext(), R.color.white)
+        val inactiveColor = ContextCompat.getColor(requireContext(), R.color.color_text_secondary)
+
+        if (showingAll) {
+            binding.friendsTabAll.setBackgroundResource(R.drawable.shape_segmented_active)
+            binding.friendsTabAll.setTextColor(activeColor)
+            binding.friendsTabRequests.background = null
+            binding.friendsTabRequests.setTextColor(inactiveColor)
+        } else {
+            binding.friendsTabRequests.setBackgroundResource(R.drawable.shape_segmented_active)
+            binding.friendsTabRequests.setTextColor(activeColor)
+            binding.friendsTabAll.background = null
+            binding.friendsTabAll.setTextColor(inactiveColor)
         }
     }
 
