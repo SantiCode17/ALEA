@@ -7,6 +7,7 @@ import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
 import com.example.alea.databinding.ActivityMainBinding
 
@@ -71,7 +72,18 @@ class MainActivity : AppCompatActivity() {
         binding.tabFriends.setOnClickListener { navigateToTab(1) }
         binding.fabCreate.setOnClickListener {
             // FAB → Navigate to create challenge
-            navController.navigate(R.id.createStep0Fragment)
+            val currentDest = navController.currentDestination?.id
+            if (currentDest == R.id.createStep0Fragment) return@setOnClickListener
+
+            try {
+                // Pop everything back to home first for clean state
+                navController.popBackStack(R.id.homeFragment, false)
+                navController.navigate(R.id.action_global_createStep0)
+            } catch (e: Exception) {
+                try {
+                    navController.navigate(R.id.createStep0Fragment)
+                } catch (_: Exception) { }
+            }
         }
         binding.tabSettings.setOnClickListener { navigateToTab(3) }
         binding.tabProfile.setOnClickListener { navigateToTab(4) }

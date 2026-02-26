@@ -14,7 +14,7 @@
     <string name="onboarding_skip">Omitir</string>
 
     <!-- Auth -->
-    <string name="login_welcome">Welcome Back!</string>
+    <string name="login_welcome">¡Bienvenido de nuevo!</string>
     <string name="login_subtitle">Te hemos echado de menos</string>
     <string name="login_username_hint">\@username</string>
     <string name="login_password_hint">Contraseña</string>
@@ -37,7 +37,7 @@
     <string name="register_error_pass_short">La contraseña debe tener al menos 6 caracteres</string>
     <string name="register_error_user_taken">Este nombre de usuario ya está en uso</string>
 
-    <string name="register_title">Get Started Free</string>
+    <string name="register_title">Empieza Gratis</string>
     <string name="register_subtitle">Gratis para siempre. Sin tarjeta de crédito.</string>
     <string name="register_email_hint">tucorreo@gmail.com</string>
     <string name="register_name_hint">Tu nombre completo</string>
@@ -60,17 +60,17 @@
     <string name="forgot_back">Volver al Inicio de Sesión</string>
 
     <!-- Home -->
-    <string name="home_greeting">Hello Santi,</string>
-    <string name="home_welcome">Welcome!!</string>
+    <string name="home_greeting">Hola Santi,</string>
+    <string name="home_welcome">¡Bienvenido!</string>
     <string name="home_balance">13,450.00</string>
     <string name="home_balance_label">Saldo total de Alea Coins</string>
     <string name="home_trend">▲ +15%</string>
-    <string name="home_last_victory">Last victory</string>
+    <string name="home_last_victory">Última victoria</string>
     <string name="home_last_victory_amount">★ 250.00</string>
-    <string name="home_last_challenges">Last challenges</string>
+    <string name="home_last_challenges">Últimos retos</string>
     <string name="home_view_all">ver todos →</string>
     <string name="home_weekly_badge">🏆 Esta semana</string>
-    <string name="home_weekly_title">Weekly\nChallenge</string>
+    <string name="home_weekly_title">Reto\nSemanal</string>
     <string name="home_weekly_desc">¡Consigue 500 Alea Coins!</string>
 
     <!-- Notifications -->
@@ -80,14 +80,14 @@
 
     <!-- Ranking -->
     <string name="ranking_title">Rankings</string>
-    <string name="ranking_weekly">Weekly</string>
-    <string name="ranking_alltime">All Time</string>
-    <string name="ranking_better_than">You are doing better than</string>
-    <string name="ranking_percent">60% of other players!</string>
+    <string name="ranking_weekly">Semanal</string>
+    <string name="ranking_alltime">Histórico</string>
+    <string name="ranking_better_than">Lo estás haciendo mejor que el</string>
+    <string name="ranking_percent">60% de los jugadores</string>
     <string name="ranking_time_left">06d 23h 00m</string>
 
     <!-- Friends -->
-    <string name="friends_title">Friends</string>
+    <string name="friends_title">Amigos</string>
     <string name="friends_search_hint">Buscar amigos…</string>
     <string name="friends_pending">%d solicitudes pendientes</string>
     <string name="friends_view_all">Ver todas</string>
@@ -123,10 +123,10 @@
     <string name="create_friends_title">Desafía a tus amigos</string>
     <string name="create_friends_desc">Envía el reto a uno o más amigos para competir.</string>
     <string name="create_add_date">Añadir fecha</string>
-    <string name="create_add_task">Add Task</string>
+    <string name="create_add_task">Añadir Tarea</string>
     <string name="create_select_rivals">Selecciona a tus rivales</string>
     <string name="create_selected">%d seleccionados</string>
-    <string name="create_choose_date">Choose the date</string>
+    <string name="create_choose_date">Elige la fecha</string>
     <string name="create_bet_label">Alea Coins a apostar</string>
     <string name="create_balance_ref">Tu saldo: 13,450 ★</string>
     <string name="create_confirm_title">¡Todo listo! Desliza para confirmar</string>
@@ -163,31 +163,31 @@
     <string name="weekly_stats_title">Estadísticas Semanales</string>
 
     <!-- Profile -->
-    <string name="profile_hi">Hi,</string>
+    <string name="profile_hi">Hola,</string>
     <string name="profile_name">Santiago!</string>
-    <string name="profile_subtitle">Ready to face these challenges?</string>
-    <string name="profile_completed">Completed</string>
-    <string name="profile_incompleted">Incompleted</string>
-    <string name="profile_active_badge">ACTIVE</string>
+    <string name="profile_subtitle">¿Listo para los retos?</string>
+    <string name="profile_completed">Completados</string>
+    <string name="profile_incompleted">Incompletos</string>
+    <string name="profile_active_badge">ACTIVO</string>
     <string name="profile_achievements_title">Tus Logros</string>
     <string name="profile_achievements_count">12 de 30 desbloqueados</string>
     <string name="profile_nearby_coins">1550 ★</string>
-    <string name="profile_nearby_label">This week · +5%</string>
+    <string name="profile_nearby_label">Esta semana · +5%</string>
 
     <!-- Settings -->
-    <string name="settings_title">Settings</string>
-    <string name="settings_edit_profile">Edit profile</string>
-    <string name="settings_security">Security</string>
-    <string name="settings_notifications">Notifications</string>
-    <string name="settings_privacy">Privacy</string>
-    <string name="settings_subscription">My Subscription</string>
-    <string name="settings_help">Help &amp; Support</string>
-    <string name="settings_terms">Terms and Policies</string>
-    <string name="settings_free_space">Free up space</string>
-    <string name="settings_data_saver">Data Saver</string>
-    <string name="settings_report">Report a problem</string>
-    <string name="settings_add_account">Add account</string>
-    <string name="settings_theme">Change Theme</string>
+    <string name="settings_title">Ajustes</string>
+    <string name="settings_edit_profile">Editar perfil</string>
+    <string name="settings_security">Seguridad</string>
+    <string name="settings_notifications">Notificaciones</string>
+    <string name="settings_privacy">Privacidad</string>
+    <string name="settings_subscription">Mi Suscripción</string>
+    <string name="settings_help">Ayuda y Soporte</string>
+    <string name="settings_terms">Términos y Políticas</string>
+    <string name="settings_free_space">Liberar espacio</string>
+    <string name="settings_data_saver">Ahorro de datos</string>
+    <string name="settings_report">Reportar un problema</string>
+    <string name="settings_add_account">Añadir cuenta</string>
+    <string name="settings_theme">Cambiar Tema</string>
     <string name="settings_logout">Cerrar Sesión</string>
 
     <!-- Edit Profile -->
@@ -209,9 +209,9 @@
 
     <!-- Theme Picker -->
     <string name="theme_title">Cambiar Tema</string>
-    <string name="theme_grid">Grid</string>
-    <string name="theme_spectrum">Spectrum</string>
-    <string name="theme_sliders">Sliders</string>
+    <string name="theme_grid">Cuadrícula</string>
+    <string name="theme_spectrum">Espectro</string>
+    <string name="theme_sliders">Deslizadores</string>
     <string name="theme_apply">Aplicar Tema</string>
     <string name="theme_cancel">Cancelar</string>
 
@@ -230,10 +230,10 @@
     <!-- Empty state -->
     <string name="empty_challenges_title">No hay nada todavía</string>
     <string name="empty_challenges_desc">Parece que no tienes nada en tu lista de retos. ¡Añade algo divertido!</string>
-    <string name="empty_got_it">Got it</string>
+    <string name="empty_got_it">Entendido</string>
 
     <!-- Explore categories -->
-    <string name="chip_all">All Challenges</string>
+    <string name="chip_all">Todos los Retos</string>
     <string name="chip_skill">Habilidad</string>
     <string name="chip_endurance">Resistencia</string>
     <string name="chip_humor">Humor</string>

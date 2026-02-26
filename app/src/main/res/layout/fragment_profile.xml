@@ -17,33 +17,36 @@
         <!-- Header bg gradient -->
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="8dp">
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="140dp"
-                android:background="@drawable/gradient_primary"/>
+                android:layout_height="match_parent"
+                android:background="@drawable/shape_gradient_header"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:gravity="center_horizontal"
-                android:paddingTop="32dp">
+                android:paddingTop="32dp"
+                android:paddingBottom="28dp">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/profile_avatar"
-                    android:layout_width="90dp"
-                    android:layout_height="90dp"
+                    android:layout_width="88dp"
+                    android:layout_height="88dp"
                     android:src="@drawable/oso_alea_de_pie_saludando"
                     app:civ_border_width="3dp"
-                    app:civ_border_color="@color/color_background"/>
+                    app:civ_border_color="@color/white"/>
 
                 <TextView
                     android:id="@+id/profile_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="14dp"
                     android:fontFamily="@font/poppins_bold"
                     android:textColor="@color/white"
                     android:textSize="22sp"/>
@@ -54,18 +57,18 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:fontFamily="@font/poppins"
-                    android:textColor="@color/color_text_secondary"
+                    android:textColor="@color/white_70"
                     android:textSize="14sp"/>
 
                 <TextView
                     android:id="@+id/profile_level"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:background="@drawable/bg_gradient_primary"
+                    android:layout_marginTop="14dp"
+                    android:background="@drawable/shape_level_badge"
                     android:fontFamily="@font/poppins_semibold"
-                    android:paddingHorizontal="20dp"
-                    android:paddingVertical="4dp"
+                    android:paddingHorizontal="22dp"
+                    android:paddingVertical="5dp"
                     android:textColor="@color/white"
                     android:textSize="12sp"/>
             </LinearLayout>

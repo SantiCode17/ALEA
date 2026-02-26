@@ -18,9 +18,13 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.alea.R
 import com.example.alea.data.MockDataProvider
+import com.example.alea.data.model.Friend
 import de.hdodenhof.circleimageview.CircleImageView
 
 class AddFriendFragment : Fragment() {
+
+    private lateinit var suggestionsContainer: LinearLayout
+    private val allSuggestions = MockDataProvider.contactSuggestions
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val scroll = ScrollView(requireContext()).apply {
@@ -68,6 +72,21 @@ class AddFriendFragment : Fragment() {
             imeOptions = EditorInfo.IME_ACTION_SEARCH
             isSingleLine = true
         }
+
+        // Search filter
+        searchInput.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+            override fun afterTextChanged(s: Editable?) {
+                val query = s.toString().lowercase().trim()
+                val filtered = if (query.isEmpty()) allSuggestions
+                else allSuggestions.filter {
+                    it.name.lowercase().contains(query) || it.username.lowercase().contains(query)
+                }
+                refreshSuggestions(filtered)
+            }
+        })
+
         searchCard.addView(searchInput)
         val searchLp = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
         searchLp.bottomMargin = 48
@@ -83,69 +102,96 @@ class AddFriendFragment : Fragment() {
         }
         root.addView(sugLabel)
 
-        // Suggestions
-        MockDataProvider.contactSuggestions.forEach { friend ->
-            val card = CardView(requireContext()).apply {
-                radius = 40f
-                setCardBackgroundColor(resources.getColor(R.color.color_surface, null))
-                cardElevation = 0f
-            }
-            val row = LinearLayout(requireContext()).apply {
-                orientation = LinearLayout.HORIZONTAL
-                setPadding(36, 28, 36, 28)
-                gravity = android.view.Gravity.CENTER_VERTICAL
-            }
-
-            val avatar = CircleImageView(requireContext()).apply {
-                setImageResource(R.drawable.ic_person)
-                setColorFilter(resources.getColor(R.color.color_primary, null))
-                borderWidth = 2
-                borderColor = resources.getColor(R.color.color_primary, null)
-            }
-            row.addView(avatar, LinearLayout.LayoutParams(120, 120))
-
-            val info = LinearLayout(requireContext()).apply {
-                orientation = LinearLayout.VERTICAL
-                setPadding(24, 0, 0, 0)
-            }
-            info.addView(TextView(requireContext()).apply {
-                text = friend.name
-                setTextColor(resources.getColor(R.color.white, null))
-                textSize = 16f
-                typeface = resources.getFont(R.font.poppins_semibold)
-            })
-            info.addView(TextView(requireContext()).apply {
-                text = friend.username
-                setTextColor(resources.getColor(R.color.color_text_secondary, null))
-                textSize = 13f
-                typeface = resources.getFont(R.font.poppins)
-            })
-            val infoLp = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
-            row.addView(info, infoLp)
-
-            val addBtn = TextView(requireContext()).apply {
-                text = getString(R.string.add_friend_button)
-                setTextColor(resources.getColor(R.color.white, null))
-                textSize = 13f
-                typeface = resources.getFont(R.font.poppins_semibold)
-                setBackgroundResource(R.drawable.bg_gradient_primary)
-                setPadding(40, 20, 40, 20)
-                setOnClickListener {
-                    this.text = "✓ Enviado"
-                    this.isEnabled = false
-                    this.alpha = 0.6f
-                    Toast.makeText(requireContext(), "Solicitud enviada a ${friend.name}", Toast.LENGTH_SHORT).show()
-                }
-            }
-            row.addView(addBtn)
-
-            card.addView(row)
-            val cardLp = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-            cardLp.bottomMargin = 20
-            root.addView(card, cardLp)
+        // Suggestions container
+        suggestionsContainer = LinearLayout(requireContext()).apply {
+            orientation = LinearLayout.VERTICAL
         }
+        root.addView(suggestionsContainer)
+
+        // Initial load
+        refreshSuggestions(allSuggestions)
 
         scroll.addView(root)
         return scroll
+    }
+
+    private fun refreshSuggestions(friends: List<Friend>) {
+        suggestionsContainer.removeAllViews()
+        friends.forEach { friend ->
+            suggestionsContainer.addView(createFriendCard(friend))
+        }
+        if (friends.isEmpty()) {
+            val empty = TextView(requireContext()).apply {
+                text = "No se encontraron resultados"
+                setTextColor(resources.getColor(R.color.color_text_hint, null))
+                textSize = 14f
+                typeface = resources.getFont(R.font.poppins)
+                gravity = android.view.Gravity.CENTER
+                setPadding(0, 40, 0, 40)
+            }
+            suggestionsContainer.addView(empty)
+        }
+    }
+
+    private fun createFriendCard(friend: Friend): View {
+        val card = CardView(requireContext()).apply {
+            radius = 40f
+            setCardBackgroundColor(resources.getColor(R.color.color_surface, null))
+            cardElevation = 0f
+        }
+        val row = LinearLayout(requireContext()).apply {
+            orientation = LinearLayout.HORIZONTAL
+            setPadding(36, 28, 36, 28)
+            gravity = android.view.Gravity.CENTER_VERTICAL
+        }
+
+        val avatar = CircleImageView(requireContext()).apply {
+            setImageResource(R.drawable.ic_person)
+            setColorFilter(resources.getColor(R.color.color_primary, null))
+            borderWidth = 2
+            borderColor = resources.getColor(R.color.color_primary, null)
+        }
+        row.addView(avatar, LinearLayout.LayoutParams(120, 120))
+
+        val info = LinearLayout(requireContext()).apply {
+            orientation = LinearLayout.VERTICAL
+            setPadding(24, 0, 0, 0)
+        }
+        info.addView(TextView(requireContext()).apply {
+            text = friend.name
+            setTextColor(resources.getColor(R.color.white, null))
+            textSize = 16f
+            typeface = resources.getFont(R.font.poppins_semibold)
+        })
+        info.addView(TextView(requireContext()).apply {
+            text = friend.username
+            setTextColor(resources.getColor(R.color.color_text_secondary, null))
+            textSize = 13f
+            typeface = resources.getFont(R.font.poppins)
+        })
+        val infoLp = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
+        row.addView(info, infoLp)
+
+        val addBtn = TextView(requireContext()).apply {
+            text = getString(R.string.add_friend_button)
+            setTextColor(resources.getColor(R.color.white, null))
+            textSize = 13f
+            typeface = resources.getFont(R.font.poppins_semibold)
+            setBackgroundResource(R.drawable.bg_gradient_primary)
+            setPadding(40, 20, 40, 20)
+            setOnClickListener {
+                this.text = "✓ Enviado"
+                this.isEnabled = false
+                this.alpha = 0.6f
+                Toast.makeText(requireContext(), "Solicitud enviada a ${friend.name}", Toast.LENGTH_SHORT).show()
+            }
+        }
+        row.addView(addBtn)
+
+        card.addView(row)
+        val cardLp = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+        cardLp.bottomMargin = 20
+        card.layoutParams = cardLp
+        return card
     }
 }

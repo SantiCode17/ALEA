@@ -10,6 +10,15 @@
     android:orientation="horizontal"
     android:padding="14dp">
 
+    <!-- Unread dot -->
+    <View
+        android:id="@+id/notification_unread_dot"
+        android:layout_width="8dp"
+        android:layout_height="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/bg_gradient_primary"
+        android:visibility="gone"/>
+
     <ImageView
         android:id="@+id/notification_icon"
         android:layout_width="40dp"
@@ -45,11 +54,28 @@
             android:textSize="12sp"/>
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/notification_time"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins"
-        android:textColor="@color/color_text_hint"
-        android:textSize="11sp"/>
+        android:orientation="vertical"
+        android:gravity="end">
+
+        <TextView
+            android:id="@+id/notification_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins"
+            android:textColor="@color/color_text_hint"
+            android:textSize="11sp"/>
+
+        <ImageView
+            android:id="@+id/notification_delete"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/ic_close"
+            android:visibility="gone"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            app:tint="@color/color_text_hint"/>
+    </LinearLayout>
 </LinearLayout>

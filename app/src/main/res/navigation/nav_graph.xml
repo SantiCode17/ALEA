@@ -5,6 +5,15 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/homeFragment">
 
+    <!-- Global action: FAB can navigate to create from any screen -->
+    <action
+        android:id="@+id/action_global_createStep0"
+        app:destination="@id/createStep0Fragment"
+        app:enterAnim="@anim/fragment_enter"
+        app:exitAnim="@anim/fragment_exit"
+        app:popEnterAnim="@anim/fragment_pop_enter"
+        app:popExitAnim="@anim/fragment_pop_exit"/>
+
     <fragment android:id="@+id/homeFragment"
         android:name="com.example.alea.ui.home.HomeFragment"
         android:label="Home"
